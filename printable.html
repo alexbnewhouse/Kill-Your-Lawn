@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kill Your Lawn — One-Pager | Lafayette, CO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #1a1710;
+      --olive:    #4a5c3a;
+      --sage:     #7a9169;
+      --gold:     #c9992a;
+      --rust:     #b05a35;
+      --cream:    #f5f0e8;
+      --tan:      #c8b89a;
+      --text:     #2c2a24;
+      --text-lt:  #6b6455;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #d8d2c6;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 0 32px;
+      background: var(--cream);
+      box-shadow: 0 6px 48px rgba(0,0,0,0.22);
+    }
+
+    /* ---- Print bar (screen only) ---- */
+    .print-bar {
+      background: var(--black);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .print-bar a { color: var(--gold); text-decoration: none; }
+    .print-bar button {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 8px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .print-bar button:hover { background: #b5871f; }
+
+    /* ---- DARK ILLUSTRATED HEADER ---- */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 28px 36px 26px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .header-left { position: relative; z-index: 2; }
+    .header-right { position: relative; z-index: 2; text-align: center; flex-shrink: 0; }
+
+    /* Prairie grass silhouette illustration */
+    .header-illustration {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 110px;
+      color: white;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      line-height: 1.0;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+    h1 em { color: var(--gold); font-style: italic; }
+    .tagline {
+      font-size: 11.5px;
+      color: rgba(245,240,232,0.58);
+      max-width: 370px;
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    /* QR box — dark, matching header */
+    .qr-placeholder {
+      width: 88px;
+      height: 88px;
+      border: 1.5px solid rgba(201,153,42,0.35);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: rgba(245,240,232,0.45);
+      text-align: center;
+      gap: 4px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.03);
+    }
+    .qr-placeholder .qr-icon { font-size: 26px; opacity: 0.5; }
+    .qr-url {
+      font-size: 8px;
+      color: var(--gold);
+      font-weight: 600;
+      text-align: center;
+      margin-top: 5px;
+      letter-spacing: 0.04em;
+      opacity: 0.8;
+    }
+
+    /* ---- STATS — flush to header, connected visually ---- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-bottom: 0;
+      background: rgba(0,0,0,0.35); /* gap color */
+    }
+    .stat {
+      background: #201e17;
+      color: white;
+      padding: 12px 14px 12px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-accent {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+    }
+    .stat-water .stat-accent { background: #5a9fd4; }
+    .stat-birds .stat-accent { background: var(--sage); }
+    .stat-money .stat-accent { background: var(--rust); }
+    .stat-saves .stat-accent { background: var(--gold); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
+
+    /* Space between stats band and content */
+    .content-area { padding-top: 18px; }
+
+    /* ---- SECTION DIVIDER ---- */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 36px 12px;
+      color: var(--tan);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--tan);
+      opacity: 0.55;
+    }
+
+    /* ---- MAIN 2-COL GRID ---- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 0 36px;
+    }
+
+    .box {
+      padding: 16px 18px;
+      border-radius: 3px;
+    }
+    .box-olive {
+      background: var(--olive);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Large decorative quote mark */
+    .box-olive::after {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 110px;
+      color: rgba(255,255,255,0.07);
+      position: absolute;
+      top: -10px;
+      right: 6px;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .box-cream { background: white; border: 1px solid var(--tan); }
+    .box-black { background: var(--black); color: white; }
+
+    .box-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0.65;
+    }
+    .box-olive .box-label,
+    .box-black .box-label { color: rgba(255,255,255,0.7); }
+
+    .box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .box-olive h2,
+    .box-black h2 { color: white; }
+
+    .box p, .box li {
+      font-size: 11px;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+    .box ul { list-style: none; padding: 0; }
+    .box li {
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      display: flex;
+      gap: 6px;
+    }
+    .box-olive li { border-color: rgba(255,255,255,0.12); }
+    .box-black li { border-color: rgba(255,255,255,0.1); }
+    .box li:last-child { border-bottom: none; }
+    .box li::before { content: '—'; opacity: 0.4; flex-shrink: 0; }
+
+    .obj {
+      margin-bottom: 9px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 1;
+    }
+    .obj:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .obj-q {
+      font-weight: 600;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2px;
+      font-style: italic;
+    }
+    .obj-a {
+      font-size: 10px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.45;
+    }
+
+    /* ---- PHOTO STRIP ---- */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-bottom: 12px;
+      padding: 0 36px;
+    }
+    .photo-strip-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .photo-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-strip-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: rgba(255,255,255,0.92);
+      font-size: 8px;
+      font-weight: 500;
+      padding: 10px 5px 4px;
+      letter-spacing: 0.02em;
+    }
+    .photo-strip-note {
+      font-size: 8.5px;
+      color: var(--text-lt);
+      font-style: italic;
+      text-align: right;
+      padding: 3px 36px 0;
+    }
+
+    /* ---- PLANTS ROW ---- */
+    .plants-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 0 36px;
+    }
+    .plant-col {
+      background: white;
+      border: 1px solid var(--tan);
+      border-top: 3px solid var(--sage);
+      border-radius: 0 0 3px 3px;
+      padding: 12px 14px;
+    }
+    .plant-col:nth-child(2) {
+      border-top-color: var(--rust);
+    }
+    .plant-col:nth-child(2) .plant-col-title {
+      color: var(--rust);
+      border-bottom-color: var(--rust);
+    }
+    .plant-col:nth-child(3) {
+      border-top-color: #a07818;
+    }
+    .plant-col:nth-child(3) .plant-col-title {
+      color: #8a6010;
+      border-bottom-color: #a07818;
+    }
+    .plant-col-title {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1.5px solid var(--sage);
+    }
+    .plant-col ul { list-style: none; padding: 0; }
+    .plant-col li {
+      font-size: 10px;
+      color: var(--text);
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .plant-col li:last-child { border-bottom: none; }
+    .plant-col li em { color: var(--text-lt); font-size: 9px; }
+
+    /* ---- LEGAL / RESOURCES ROW ---- */
+    .full-box.legal {
+      background: white;
+      border: 1px solid var(--tan);
+      border-radius: 3px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      margin: 0 36px 12px;
+    }
+    .legal-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: var(--black);
+    }
+    .legal-col p {
+      font-size: 10px;
+      color: var(--text-lt);
+      line-height: 1.45;
+    }
+    .legal-badge {
+      display: inline-block;
+      color: white;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-bottom: 5px;
+    }
+    .lb-law    { background: var(--rust); }
+    .lb-prog   { background: var(--olive); }
+    .lb-source { background: #7a6820; }
+
+    /* ---- FOOTER ---- */
+    .footer-grass {
+      margin: 8px 36px 0;
+      opacity: 0.18;
+      height: 28px;
+      width: 100%;
+      color: var(--olive);
+      display: block;
+    }
+    .one-pager-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      padding: 12px 36px 0;
+      border-top: 1px solid var(--tan);
+      align-items: center;
+      margin-top: 8px;
+    }
+    .footer-block { font-size: 10px; color: var(--text-lt); line-height: 1.5; }
+    .footer-block strong { color: var(--black); display: block; font-size: 11px; margin-bottom: 2px; }
+    .footer-block.center { text-align: center; }
+    .footer-block.right { text-align: right; }
+    .inspired-by { font-size: 9px; color: var(--text-lt); font-style: italic; }
+
+    /* ---- PRINT ---- */
+    @media print {
+      .print-bar { display: none; }
+      body { background: white; }
+      .page { padding: 0 0 16px; max-width: 100%; box-shadow: none; }
+      h1 { font-size: 40px; }
+      .header { padding: 20px 28px 20px; }
+      .stats { gap: 1px; }
+      .main-grid, .photo-strip, .plants-row { padding: 0 28px; }
+      .section-divider { margin-left: 28px; margin-right: 28px; }
+      .full-box.legal { margin-left: 28px; margin-right: 28px; }
+      .footer-grass, .one-pager-footer { padding-left: 28px; padding-right: 28px; }
+      .photo-strip-note { padding-right: 28px; }
+      .content-area { padding-top: 14px; }
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 600px) {
+      .page { padding: 0 0 20px; }
+      .header { padding: 20px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .main-grid { grid-template-columns: 1fr; padding: 0 20px; }
+      .photo-strip { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+      .plants-row { grid-template-columns: 1fr; padding: 0 20px; }
+      .full-box.legal { grid-template-columns: 1fr; margin: 0 20px 12px; }
+      .section-divider { margin-left: 20px; margin-right: 20px; }
+      .photo-strip-note { padding-right: 20px; }
+      .one-pager-footer { grid-template-columns: 1fr; padding: 12px 20px 0; }
+      .footer-block.center, .footer-block.right { text-align: left; }
+      .footer-grass { margin-left: 20px; margin-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <span>Share with a neighbor &mdash; <a href="index.html">full site at killyourlawn.com</a></span>
+    <button onclick="window.print()">&#128438; Print This</button>
+  </div>
+
+  <div class="page">
+
+    <!-- DARK HEADER with prairie grass illustration -->
+    <div class="header">
+
+      <!-- Prairie grass silhouette SVG -->
+      <svg class="header-illustration" viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <!-- Stalks with grama eyelash seed heads and coneflower ovals -->
+        <rect x="12"  y="12"  width="1.5" height="98" rx="0.75"/>
+        <ellipse cx="12.75" cy="5"  rx="8" ry="3.5" transform="rotate(-12,12.75,5)"/>
+
+        <rect x="48"  y="28"  width="1.5" height="82" rx="0.75" opacity="0.65"/>
+        <ellipse cx="48.75" cy="21" rx="7" ry="3"   transform="rotate(9,48.75,21)"/>
+
+        <rect x="82"  y="8"   width="1.5" height="102" rx="0.75" opacity="0.9"/>
+        <ellipse cx="82.75" cy="1"  rx="5" ry="9"/>
+
+        <rect x="118" y="20"  width="1.5" height="90" rx="0.75"/>
+        <ellipse cx="118.75" cy="13" rx="8" ry="3.5" transform="rotate(-7,118.75,13)"/>
+
+        <rect x="152" y="35"  width="1.5" height="75" rx="0.75" opacity="0.7"/>
+        <ellipse cx="152.75" cy="28" rx="7" ry="3"   transform="rotate(10,152.75,28)"/>
+
+        <rect x="188" y="14"  width="1.5" height="96" rx="0.75"/>
+        <ellipse cx="188.75" cy="7"  rx="5" ry="8"/>
+
+        <rect x="222" y="22"  width="1.5" height="88" rx="0.75" opacity="0.8"/>
+        <ellipse cx="222.75" cy="15" rx="8" ry="3.5" transform="rotate(6,222.75,15)"/>
+
+        <rect x="258" y="10"  width="1.5" height="100" rx="0.75" opacity="0.75"/>
+        <ellipse cx="258.75" cy="3"  rx="5" ry="9"/>
+
+        <rect x="294" y="30"  width="1.5" height="80" rx="0.75" opacity="0.65"/>
+        <ellipse cx="294.75" cy="23" rx="8" ry="3.5" transform="rotate(-9,294.75,23)"/>
+
+        <rect x="328" y="16"  width="1.5" height="94" rx="0.75" opacity="0.85"/>
+        <ellipse cx="328.75" cy="9"  rx="7" ry="3"   transform="rotate(8,328.75,9)"/>
+
+        <rect x="364" y="24"  width="1.5" height="86" rx="0.75"/>
+        <ellipse cx="364.75" cy="17" rx="5" ry="8"/>
+
+        <rect x="398" y="12"  width="1.5" height="98" rx="0.75" opacity="0.8"/>
+        <ellipse cx="398.75" cy="5"  rx="8" ry="3.5" transform="rotate(-6,398.75,5)"/>
+
+        <rect x="432" y="32"  width="1.5" height="78" rx="0.75" opacity="0.7"/>
+        <ellipse cx="432.75" cy="25" rx="7" ry="3"   transform="rotate(11,432.75,25)"/>
+
+        <rect x="468" y="18"  width="1.5" height="92" rx="0.75"/>
+        <ellipse cx="468.75" cy="11" rx="5" ry="9"/>
+
+        <rect x="502" y="26"  width="1.5" height="84" rx="0.75" opacity="0.75"/>
+        <ellipse cx="502.75" cy="19" rx="8" ry="3.5" transform="rotate(-8,502.75,19)"/>
+
+        <rect x="538" y="10"  width="1.5" height="100" rx="0.75" opacity="0.85"/>
+        <ellipse cx="538.75" cy="3"  rx="7" ry="3"   transform="rotate(7,538.75,3)"/>
+
+        <rect x="572" y="20"  width="1.5" height="90" rx="0.75"/>
+        <ellipse cx="572.75" cy="13" rx="5" ry="8"/>
+
+        <rect x="608" y="34"  width="1.5" height="76" rx="0.75" opacity="0.65"/>
+        <ellipse cx="608.75" cy="27" rx="8" ry="3.5" transform="rotate(-10,608.75,27)"/>
+
+        <rect x="642" y="14"  width="1.5" height="96" rx="0.75" opacity="0.8"/>
+        <ellipse cx="642.75" cy="7"  rx="7" ry="3"   transform="rotate(9,642.75,7)"/>
+
+        <rect x="678" y="22"  width="1.5" height="88" rx="0.75"/>
+        <ellipse cx="678.75" cy="15" rx="5" ry="9"/>
+
+        <rect x="712" y="30"  width="1.5" height="80" rx="0.75" opacity="0.7"/>
+        <ellipse cx="712.75" cy="23" rx="8" ry="3.5" transform="rotate(-7,712.75,23)"/>
+
+        <rect x="748" y="16"  width="1.5" height="94" rx="0.75" opacity="0.8"/>
+        <ellipse cx="748.75" cy="9"  rx="7" ry="3"   transform="rotate(6,748.75,9)"/>
+
+        <!-- Short grass blades between tall stalks -->
+        <rect x="30"  y="60" width="1" height="50" rx="0.5" opacity="0.35"/>
+        <rect x="65"  y="68" width="1" height="42" rx="0.5" opacity="0.3"/>
+        <rect x="100" y="55" width="1" height="55" rx="0.5" opacity="0.38"/>
+        <rect x="136" y="64" width="1" height="46" rx="0.5" opacity="0.32"/>
+        <rect x="170" y="58" width="1" height="52" rx="0.5" opacity="0.36"/>
+        <rect x="206" y="66" width="1" height="44" rx="0.5" opacity="0.3"/>
+        <rect x="240" y="54" width="1" height="56" rx="0.5" opacity="0.38"/>
+        <rect x="276" y="62" width="1" height="48" rx="0.5" opacity="0.33"/>
+        <rect x="312" y="56" width="1" height="54" rx="0.5" opacity="0.36"/>
+        <rect x="346" y="68" width="1" height="42" rx="0.5" opacity="0.3"/>
+        <rect x="382" y="58" width="1" height="52" rx="0.5" opacity="0.35"/>
+        <rect x="416" y="64" width="1" height="46" rx="0.5" opacity="0.32"/>
+        <rect x="450" y="56" width="1" height="54" rx="0.5" opacity="0.37"/>
+        <rect x="486" y="66" width="1" height="44" rx="0.5" opacity="0.3"/>
+        <rect x="520" y="60" width="1" height="50" rx="0.5" opacity="0.34"/>
+        <rect x="556" y="52" width="1" height="58" rx="0.5" opacity="0.38"/>
+        <rect x="590" y="64" width="1" height="46" rx="0.5" opacity="0.31"/>
+        <rect x="626" y="56" width="1" height="54" rx="0.5" opacity="0.36"/>
+        <rect x="660" y="68" width="1" height="42" rx="0.5" opacity="0.3"/>
+        <rect x="696" y="60" width="1" height="50" rx="0.5" opacity="0.34"/>
+        <rect x="730" y="54" width="1" height="56" rx="0.5" opacity="0.37"/>
+      </svg>
+
+      <div class="header-left">
+        <div class="eyebrow">Lafayette, Colorado &nbsp;·&nbsp; A native plant project</div>
+        <h1>Kill Your<br/><em>Lawn.</em></h1>
+        <p class="tagline">Replace it with something that actually belongs here — native grasses, wildflowers, and habitat for the insects and birds that need it.</p>
+      </div>
+
+      <div class="header-right">
+        <div class="qr-placeholder">
+          <span class="qr-icon">&#9638;</span>
+          <span>Scan for<br/>full site</span>
+        </div>
+        <div class="qr-url">killyourlawn<br/>lafayette.com</div>
+      </div>
+    </div>
+
+    <!-- STATS — visually connected to header -->
+    <div class="stats">
+      <div class="stat stat-water">
+        <div class="stat-accent"></div>
+        <div class="stat-num">40M</div>
+        <div class="stat-label">acres of lawn in the US — more than any crop we grow</div>
+      </div>
+      <div class="stat stat-birds">
+        <div class="stat-accent"></div>
+        <div class="stat-num">96%</div>
+        <div class="stat-label">of terrestrial birds need insects to raise their young (Tallamy)</div>
+      </div>
+      <div class="stat stat-money">
+        <div class="stat-accent"></div>
+        <div class="stat-num">$750</div>
+        <div class="stat-label">Lafayette lawn replacement credit via Resource Central (resourcecentral.org)</div>
+      </div>
+      <div class="stat stat-saves">
+        <div class="stat-accent"></div>
+        <div class="stat-num">$4–7K</div>
+        <div class="stat-label">typical 5-year savings vs. a maintained conventional lawn</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- MAIN 2-COL GRID -->
+      <div class="main-grid">
+
+        <!-- Objections col -->
+        <div class="box box-olive">
+          <div class="box-label">Common Objections</div>
+          <div class="objection-list">
+            <div class="obj">
+              <div class="obj-q">"It'll look messy."</div>
+              <div class="obj-a">Design and intention make the difference. Clean edges, defined paths, and a simple sign signal that this is deliberate. It looks sparse in year one and beautiful by year three.</div>
+            </div>
+            <div class="obj">
+              <div class="obj-q">"Won't it attract pests?"</div>
+              <div class="obj-a">Lawns attract pests — grubs bring skunks and raccoons. Mosquitoes breed in standing water, not plants. Natives support predatory insects that keep pest populations down.</div>
+            </div>
+            <div class="obj">
+              <div class="obj-q">"My HOA won't allow it."</div>
+              <div class="obj-a">Colorado HB 21-1229 (2021) and SB 23-178 (2023) prohibit HOAs from banning native or drought-tolerant landscaping. The law is on your side.</div>
+            </div>
+            <div class="obj">
+              <div class="obj-q">"Is it a fire hazard?"</div>
+              <div class="obj-a">Well-designed native gardens — with rock mulch and low-growing prairie species — are often more fire-resistant than a dried-out July lawn.</div>
+            </div>
+            <div class="obj">
+              <div class="obj-q">"Won't it lower my property value?"</div>
+              <div class="obj-a">Water savings are a real selling point in the West. Studies in arid climates show xeriscape landscaping is neutral to positive on property values.</div>
+            </div>
+            <div class="obj">
+              <div class="obj-q">"This seems like a lot of work."</div>
+              <div class="obj-a">Lawns require constant maintenance. A native garden is front-loaded — hard in year one, easier each year after. By year three, you're mostly watching.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to start col -->
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="box box-cream">
+            <div class="box-label">How to Kill Your Lawn</div>
+            <h2 style="font-size:14px;margin-bottom:6px;">Five methods, in order of effort</h2>
+            <ul>
+              <li><span><strong>Sheet mulching</strong> — cardboard + 4–6" wood chips. Year-round. Builds soil as it smothers.</span></li>
+              <li><span><strong>Solarization</strong> — clear plastic in summer heat for 6–8 weeks. Free and effective.</span></li>
+              <li><span><strong>Tarp smothering</strong> — black poly tarps for 6–12 months. Reusable, low effort.</span></li>
+              <li><span><strong>Sod cutting</strong> — rent a machine, strip it out, plant immediately.</span></li>
+              <li><span><strong>Native lawn swap</strong> — replace bluegrass with blue grama + buffalo grass. Still a lawn, just the right one.</span></li>
+            </ul>
+          </div>
+
+          <div class="box box-black">
+            <div class="box-label">Start Small</div>
+            <h2 style="color:white;font-size:14px;margin-bottom:6px;">You don't have to do it all at once</h2>
+            <ul>
+              <li><span>The <strong style="color:var(--gold)">hell strip</strong> — most visible, least precious, easiest win</span></li>
+              <li><span>One <strong style="color:var(--gold)">corner bed</strong> — define it with clean edges, plant 5–10 species</span></li>
+              <li><span>A <strong style="color:var(--gold)">pollinator patch</strong> — 6×6 ft of coneflower, bergamot, prairie clover</span></li>
+              <li><span><strong style="color:var(--gold)">Lawn on a diet</strong> — convert 25% per year over four years</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider" aria-hidden="true">&#9670;</div>
+
+      <!-- PHOTO STRIP — what these plants actually look like -->
+      <div class="photo-strip">
+        <div class="photo-strip-item">
+          <img src="images/plants/prairie_coneflower.jpg" alt="Prairie coneflower in bloom" loading="eager" />
+          <span class="photo-strip-caption">Prairie coneflower</span>
+        </div>
+        <div class="photo-strip-item">
+          <img src="images/plants/rocky_mountain_penstemon.jpg" alt="Rocky Mountain penstemon" loading="eager" />
+          <span class="photo-strip-caption">Rocky Mtn penstemon</span>
+        </div>
+        <div class="photo-strip-item">
+          <img src="images/bees/sweat_bee.jpg" alt="Metallic green sweat bee" loading="eager" />
+          <span class="photo-strip-caption">Native sweat bee</span>
+        </div>
+        <div class="photo-strip-item">
+          <img src="images/plants/blanket_flower.jpg" alt="Blanket flower" loading="eager" />
+          <span class="photo-strip-caption">Blanket flower</span>
+        </div>
+      </div>
+      <p class="photo-strip-note">Photos via Wikimedia Commons, CC license. All species native to the Colorado Front Range.</p>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider" aria-hidden="true">&#9670;</div>
+
+      <!-- PLANTS ROW -->
+      <div class="plants-row">
+        <div class="plant-col">
+          <div class="plant-col-title">Native Grasses</div>
+          <ul>
+            <li>Blue grama <em>(Bouteloua gracilis)</em></li>
+            <li>Buffalo grass <em>(B. dactyloides)</em></li>
+            <li>Side-oats grama <em>(B. curtipendula)</em></li>
+            <li>Prairie dropseed <em>(Sporobolus heterolepis)</em></li>
+            <li>Inland saltgrass <em>(Distichlis spicata)</em></li>
+          </ul>
+        </div>
+        <div class="plant-col">
+          <div class="plant-col-title">Wildflowers</div>
+          <ul>
+            <li>Purple prairie clover <em>(Dalea purpurea)</em></li>
+            <li>Rocky Mtn penstemon <em>(Penstemon strictus)</em></li>
+            <li>Prairie coneflower <em>(Ratibida columnifera)</em></li>
+            <li>Blanket flower <em>(Gaillardia aristata)</em></li>
+            <li>Wild bergamot <em>(Monarda fistulosa)</em></li>
+            <li>Scarlet globemallow <em>(Sphaeralcea coccinea)</em></li>
+            <li>Maximilian sunflower <em>(Helianthus maximiliani)</em></li>
+          </ul>
+        </div>
+        <div class="plant-col">
+          <div class="plant-col-title">Shrubs &amp; Structure</div>
+          <ul>
+            <li>Apache plume <em>(Fallugia paradoxa)</em></li>
+            <li>Rabbitbrush <em>(Ericameria nauseosa)</em></li>
+            <li>Three-leaf sumac <em>(Rhus trilobata)</em></li>
+            <li>Leadplant <em>(Amorpha canescens)</em></li>
+            <li>Narrowleaf yucca <em>(Yucca glauca)</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider" aria-hidden="true">&#9670;</div>
+
+      <!-- LEGAL / RESOURCES ROW -->
+      <div class="full-box legal">
+        <div class="legal-col">
+          <div class="legal-badge lb-law">Colorado Law</div>
+          <h3>HB 21-1229 &amp; SB 23-178</h3>
+          <p>HOAs cannot prohibit drought-tolerant or native plant landscaping. They must offer pre-approved water-wise designs. If your HOA fines you, cite SB 23-178.</p>
+        </div>
+        <div class="legal-col">
+          <div class="legal-badge lb-prog">Lafayette Program</div>
+          <h3>Lawn Replacement</h3>
+          <p>Up to <strong>$750 credit</strong> through Resource Central for lawn removal services (min 200 sq ft). DIY option: free Garden In A Box kits. Sign up at lafayetteco.gov.</p>
+        </div>
+        <div class="legal-col">
+          <div class="legal-badge lb-source">Get Plants</div>
+          <h3>Local Sources</h3>
+          <p>Wildflower Farm (Erie) · Echter's native section · Tagawa Gardens · High Country Gardens (online) · Prairie Moon Nursery (seed). Free wood chips: Chip Drop.</p>
+        </div>
+      </div>
+
+      <!-- FOOTER with small root ornament -->
+      <svg class="footer-grass" viewBox="0 0 700 28" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <!-- Simple short prairie grass strip for footer decoration -->
+        <rect x="10"  y="4"  width="1" height="24" rx="0.5"/>
+        <rect x="30"  y="10" width="1" height="18" rx="0.5" opacity="0.6"/>
+        <rect x="52"  y="2"  width="1" height="26" rx="0.5" opacity="0.9"/>
+        <rect x="74"  y="8"  width="1" height="20" rx="0.5" opacity="0.7"/>
+        <rect x="96"  y="3"  width="1" height="25" rx="0.5"/>
+        <rect x="118" y="11" width="1" height="17" rx="0.5" opacity="0.55"/>
+        <rect x="140" y="5"  width="1" height="23" rx="0.5" opacity="0.85"/>
+        <rect x="162" y="9"  width="1" height="19" rx="0.5" opacity="0.65"/>
+        <rect x="184" y="2"  width="1" height="26" rx="0.5"/>
+        <rect x="206" y="12" width="1" height="16" rx="0.5" opacity="0.5"/>
+        <rect x="228" y="6"  width="1" height="22" rx="0.5" opacity="0.8"/>
+        <rect x="250" y="4"  width="1" height="24" rx="0.5" opacity="0.9"/>
+        <rect x="272" y="10" width="1" height="18" rx="0.5" opacity="0.6"/>
+        <rect x="294" y="1"  width="1" height="27" rx="0.5"/>
+        <rect x="316" y="8"  width="1" height="20" rx="0.5" opacity="0.7"/>
+        <rect x="338" y="5"  width="1" height="23" rx="0.5" opacity="0.85"/>
+        <rect x="360" y="11" width="1" height="17" rx="0.5" opacity="0.55"/>
+        <rect x="382" y="3"  width="1" height="25" rx="0.5"/>
+        <rect x="404" y="9"  width="1" height="19" rx="0.5" opacity="0.65"/>
+        <rect x="426" y="6"  width="1" height="22" rx="0.5" opacity="0.8"/>
+        <rect x="448" y="2"  width="1" height="26" rx="0.5" opacity="0.9"/>
+        <rect x="470" y="12" width="1" height="16" rx="0.5" opacity="0.5"/>
+        <rect x="492" y="4"  width="1" height="24" rx="0.5"/>
+        <rect x="514" y="10" width="1" height="18" rx="0.5" opacity="0.6"/>
+        <rect x="536" y="7"  width="1" height="21" rx="0.5" opacity="0.75"/>
+        <rect x="558" y="3"  width="1" height="25" rx="0.5" opacity="0.88"/>
+        <rect x="580" y="11" width="1" height="17" rx="0.5" opacity="0.55"/>
+        <rect x="602" y="5"  width="1" height="23" rx="0.5" opacity="0.82"/>
+        <rect x="624" y="8"  width="1" height="20" rx="0.5" opacity="0.68"/>
+        <rect x="646" y="2"  width="1" height="26" rx="0.5"/>
+        <rect x="668" y="10" width="1" height="18" rx="0.5" opacity="0.6"/>
+        <rect x="690" y="4"  width="1" height="24" rx="0.5" opacity="0.85"/>
+      </svg>
+
+      <div class="one-pager-footer">
+        <div class="footer-block">
+          <strong>Kill Your Lawn</strong>
+          Lafayette, Colorado<br/>
+          A semi-rewilded front yard in progress.
+        </div>
+        <div class="footer-block center">
+          <strong style="color:var(--olive);font-size:13px;">Full site, plant guides,<br/>legal info &amp; wildlife log:</strong>
+          <span style="color:var(--gold);font-weight:600;font-size:12px;">killyourlawn.com</span>
+        </div>
+        <div class="footer-block right">
+          <span class="inspired-by">Inspired by Doug Tallamy,<br/>Lauren Springer Ogden<br/>&amp; Joey Santore</span>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /page -->
+</body>
+</html>
