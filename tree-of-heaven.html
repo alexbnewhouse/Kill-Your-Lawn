@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kill the Tree of Heaven — One-Pager | Lafayette, CO</title>
+  <meta name="description" content="How to identify and actually kill Tree of Heaven (Ailanthus altissima) — Colorado's fast-spreading invasive tree and the favored host of the spotted lanternfly. A printable field guide for Lafayette, Colorado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #181611;
+      --paper:   #f6f1e6;
+      --cream:   #ece3d2;
+      --tan:     #c4b491;
+      --gold:    #c08a1e;
+      --olive:   #43543a;
+      --sage:    #7c9068;
+      --rust:    #a9542f;
+      --alarm:   #8f3a22;
+      --text:    #2a271f;
+      --text-lt: #6a6253;
+      --serif: 'Fraunces','Hoefler Text',Georgia,serif;
+      --sans:  'Hanken Grotesk',system-ui,sans-serif;
+      --mono:  'Space Mono',ui-monospace,monospace;
+      --frau: "SOFT" 40,"WONK" 1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: #d6cfc1;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 0 32px;
+      background: var(--paper);
+      box-shadow: 0 6px 48px rgba(0,0,0,0.24);
+      overflow: hidden;
+    }
+    /* paper grain */
+    .page::before {
+      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      opacity:0.45; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+    }
+    .page > * { position: relative; z-index: 1; }
+
+    /* ---- Print bar (screen only) ---- */
+    .print-bar {
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      font-family: var(--mono);
+      display: flex; align-items: center; justify-content: center; gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .print-bar a { color: var(--gold); text-decoration: none; }
+    .print-bar button {
+      background: var(--rust); color: #fff; border: none;
+      padding: 8px 20px; font-family: var(--mono);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; cursor: pointer; border-radius: 2px;
+      display: inline-flex; align-items: center; gap: 7px;
+    }
+    .print-bar button:hover { background: var(--alarm); }
+    .print-bar svg { width: 14px; height: 14px; }
+
+    /* ---- DARK HEADER ---- */
+    .header {
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+      padding: 30px 38px 28px;
+      background:
+        radial-gradient(120% 100% at 82% 0%, rgba(169,84,47,0.30) 0%, transparent 50%),
+        linear-gradient(170deg,#1d1a12 0%,#27241a 60%,#191610 100%);
+      position: relative; overflow: hidden;
+    }
+    .header-left { position: relative; z-index: 2; }
+    .header-right { position: relative; z-index: 2; text-align: center; flex-shrink: 0; }
+
+    /* Tree-of-heaven compound-leaf silhouette */
+    .header-illustration {
+      position: absolute; bottom: -6px; left: 0; right: 0;
+      width: 100%; height: 132px; color: #fff; opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--rust); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .eyebrow::before { content:''; width:30px; height:1.5px; background: var(--rust); }
+    h1 {
+      font-family: var(--serif); font-variation-settings: var(--frau);
+      font-weight: 600; font-size: 50px; line-height: 0.96;
+      color: var(--paper); letter-spacing: -0.025em;
+    }
+    h1 em { color: var(--rust); font-style: italic; font-weight: 600; }
+    .tagline {
+      font-size: 12px; color: rgba(246,241,230,0.62);
+      max-width: 400px; margin-top: 12px; line-height: 1.55;
+    }
+    .tagline strong { color: rgba(246,241,230,0.85); font-weight: 600; }
+
+    .latin {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: 84px; line-height: 1; color: var(--paper);
+    }
+    .badge-stack { display:flex; flex-direction:column; align-items:center; gap:6px; }
+    .id-chip {
+      width: 92px; min-height: 92px; padding: 10px 8px;
+      border: 1.5px solid rgba(169,84,47,0.45); border-radius: 4px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; background: rgba(255,255,255,0.03); text-align:center;
+    }
+    .id-chip svg { width: 30px; height: 30px; color: var(--rust); }
+    .id-chip span {
+      font-family: var(--mono); font-size: 7.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(246,241,230,0.55);
+      line-height: 1.3;
+    }
+    .id-chip em {
+      font-family: var(--serif); font-style: italic; font-size: 11px;
+      color: rgba(246,241,230,0.8);
+    }
+
+    /* ---- STATS ---- */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      background: rgba(0,0,0,0.4);
+    }
+    .stat { background: #211d15; color: #fff; padding: 13px 14px 13px 18px; position: relative; overflow: hidden; }
+    .stat-accent { position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
+    .stat-a .stat-accent { background: var(--rust); }
+    .stat-b .stat-accent { background: var(--gold); }
+    .stat-c .stat-accent { background: #b58a3a; }
+    .stat-d .stat-accent { background: var(--sage); }
+    .stat-num {
+      font-family: var(--serif); font-variation-settings: var(--frau);
+      font-weight: 600; font-size: 23px; color: var(--gold); line-height: 1.08; margin-bottom: 4px;
+    }
+    .stat-a .stat-num { color: #e0844f; }
+    .stat-label { font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,0.5); line-height: 1.4; letter-spacing: 0.01em; }
+
+    .content-area { padding-top: 18px; }
+
+    /* ---- SECTION DIVIDER ---- */
+    .section-divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 16px 38px 13px; color: var(--tan);
+      font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--tan); opacity: 0.6;
+    }
+
+    /* ---- MAIN 2-COL GRID ---- */
+    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; padding: 0 38px; }
+    .box { padding: 16px 18px; border-radius: 4px; }
+    .box-rust { background: var(--alarm); color: #fff; position: relative; overflow: hidden; }
+    .box-rust::after {
+      content: '\2715'; font-family: var(--sans); font-weight: 700;
+      font-size: 130px; color: rgba(255,255,255,0.06);
+      position: absolute; top: -22px; right: 0; line-height: 1; pointer-events: none;
+    }
+    .box-cream { background: #fff; border: 1px solid var(--tan); }
+    .box-black { background: var(--ink); color: #fff; }
+
+    .box-label {
+      font-family: var(--mono); font-size: 8px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 9px; opacity: 0.75;
+    }
+    .box-rust .box-label, .box-black .box-label { color: rgba(255,255,255,0.78); }
+    .box h2 {
+      font-family: var(--serif); font-variation-settings: var(--frau);
+      font-weight: 600; font-size: 15.5px; margin-bottom: 8px; line-height: 1.18; letter-spacing: -0.01em;
+    }
+    .box-rust h2, .box-black h2 { color: #fff; }
+    .box-cream h2 { color: var(--ink); }
+    .box p, .box li { font-size: 11px; line-height: 1.5; }
+    .box ul { list-style: none; padding: 0; }
+    .box li {
+      padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+      display: flex; gap: 7px; align-items: baseline; position: relative; z-index: 1;
+    }
+    .box-rust li { border-color: rgba(255,255,255,0.14); color: rgba(255,255,255,0.92); }
+    .box-black li { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
+    .box-cream li { color: var(--text); }
+    .box li:last-child { border-bottom: none; }
+    .box li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; margin-top: 6px; background: currentColor; opacity: 0.5; }
+    .box-rust li::before { background: var(--gold); opacity: 0.9; }
+    .box-cream li strong { color: var(--ink); }
+    .box-black li strong { color: var(--gold); }
+
+    .col-stack { display: flex; flex-direction: column; gap: 12px; }
+
+    /* numbered method steps */
+    .steps { list-style: none; padding: 0; counter-reset: s; }
+    .steps li {
+      display: grid; grid-template-columns: 22px 1fr; gap: 9px; align-items: baseline;
+      padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .steps li:last-child { border-bottom: none; }
+    .steps li::before {
+      counter-increment: s; content: counter(s);
+      font-family: var(--mono); font-weight: 700; font-size: 12px;
+      color: var(--rust); background: none; width: auto; height: auto; border-radius: 0; margin: 0;
+    }
+    .steps li strong { color: var(--ink); }
+
+    /* ---- ID STRIP ---- */
+    .id-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 6px; padding: 0 38px; }
+    .id-card { background: #fff; border: 1px solid var(--tan); border-top: 3px solid var(--rust); border-radius: 0 0 4px 4px; padding: 12px 13px; }
+    .id-card .id-ico { color: var(--olive); margin-bottom: 7px; }
+    .id-card .id-ico svg { width: 26px; height: 26px; display: block; }
+    .id-card h4 { font-family: var(--serif); font-variation-settings: var(--frau); font-weight: 600; font-size: 12.5px; color: var(--ink); margin-bottom: 3px; }
+    .id-card p { font-size: 9.7px; color: var(--text-lt); line-height: 1.42; }
+    .id-note {
+      font-size: 9.5px; color: var(--text-lt); padding: 7px 38px 0; line-height: 1.5;
+    }
+    .id-note strong { color: var(--alarm); }
+
+    /* ---- PLANT INSTEAD ROW ---- */
+    .plants-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; padding: 0 38px; }
+    .plant-col { background: #fff; border: 1px solid var(--tan); border-top: 3px solid var(--sage); border-radius: 0 0 4px 4px; padding: 12px 14px; }
+    .plant-col:nth-child(2) { border-top-color: var(--olive); }
+    .plant-col:nth-child(2) .plant-col-title { color: var(--olive); border-bottom-color: var(--olive); }
+    .plant-col:nth-child(3) { border-top-color: #8a6010; }
+    .plant-col:nth-child(3) .plant-col-title { color: #8a6010; border-bottom-color: #a07818; }
+    .plant-col-title {
+      font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 8px; padding-bottom: 5px;
+      border-bottom: 1.5px solid var(--sage);
+    }
+    .plant-col ul { list-style: none; padding: 0; }
+    .plant-col li { font-size: 10px; color: var(--text); padding: 3.5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .plant-col li:last-child { border-bottom: none; }
+    .plant-col li em { color: var(--text-lt); font-size: 9px; font-style: italic; }
+
+    /* ---- RESOURCES ROW ---- */
+    .full-box.legal {
+      background: #fff; border: 1px solid var(--tan); border-radius: 4px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start;
+      padding: 16px 18px; margin: 0 38px 12px;
+    }
+    .legal-col h3 { font-family: var(--serif); font-variation-settings: var(--frau); font-weight: 600; font-size: 13px; margin-bottom: 5px; color: var(--ink); }
+    .legal-col p { font-size: 10px; color: var(--text-lt); line-height: 1.45; }
+    .legal-col p strong { color: var(--ink); }
+    .legal-badge {
+      display: inline-block; color: #fff; font-family: var(--mono);
+      font-size: 8px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 2px; margin-bottom: 6px;
+    }
+    .lb-law { background: var(--rust); }
+    .lb-watch { background: var(--alarm); }
+    .lb-help { background: var(--olive); }
+
+    /* ---- FOOTER ---- */
+    .footer-leaf { margin: 10px 38px 0; opacity: 0.16; height: 30px; width: 100%; color: var(--olive); display: block; }
+    .one-pager-footer {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+      padding: 13px 38px 0; border-top: 1px solid var(--tan); align-items: center; margin-top: 8px;
+    }
+    .footer-block { font-size: 10px; color: var(--text-lt); line-height: 1.5; }
+    .footer-block strong { color: var(--ink); display: block; font-size: 11px; margin-bottom: 2px; font-family: var(--serif); font-weight: 600; }
+    .footer-block.center { text-align: center; }
+    .footer-block.right { text-align: right; }
+    .footer-block .mono { font-family: var(--mono); font-weight: 700; color: var(--gold); font-size: 11px; letter-spacing: 0.02em; }
+    .sourced { font-size: 8.5px; color: var(--text-lt); font-style: italic; }
+
+    /* ---- PRINT ---- */
+    @media print {
+      .print-bar { display: none; }
+      body { background: #fff; }
+      .page { padding: 0 0 16px; max-width: 100%; box-shadow: none; }
+      .page::before { display: none; }
+      h1 { font-size: 42px; }
+      .latin { font-size: 70px; }
+      .header { padding: 22px 30px; }
+      .stats { gap: 1px; }
+      .main-grid, .id-strip, .plants-row { padding: 0 30px; }
+      .section-divider, .id-note { margin-left: 30px; margin-right: 30px; }
+      .id-note { padding-left: 30px; padding-right: 30px; }
+      .full-box.legal { margin-left: 30px; margin-right: 30px; }
+      .footer-leaf, .one-pager-footer { padding-left: 30px; padding-right: 30px; }
+      .content-area { padding-top: 14px; }
+      .box-rust, .box-black, .stat, .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 600px) {
+      .header { grid-template-columns: 1fr; padding: 22px; }
+      .header-right { text-align: left; margin-top: 4px; }
+      h1 { font-size: 40px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .main-grid { grid-template-columns: 1fr; padding: 0 20px; }
+      .id-strip { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+      .plants-row { grid-template-columns: 1fr; padding: 0 20px; }
+      .full-box.legal { grid-template-columns: 1fr; margin: 0 20px 12px; }
+      .section-divider, .id-note { margin-left: 20px; margin-right: 20px; }
+      .id-note { padding-left: 20px; padding-right: 20px; }
+      .one-pager-footer { grid-template-columns: 1fr; padding: 13px 20px 0; }
+      .footer-block.center, .footer-block.right { text-align: left; }
+      .footer-leaf { margin-left: 20px; margin-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <span>From the <a href="index.html">Kill Your Lawn</a> project &mdash; share with a neighbor</span>
+    <button onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-6h16v6h-2M8 14h8v7H8z"/></svg>Print this</button>
+  </div>
+
+  <div class="page">
+
+    <!-- DARK HEADER -->
+    <div class="header">
+
+      <!-- Compound-leaf silhouette -->
+      <svg class="header-illustration" viewBox="0 0 800 132" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <g opacity="0.9">
+          <!-- frond 1 -->
+          <path d="M70 132 C70 96 84 64 120 34"/>
+          <g fill="currentColor" stroke="none">
+            <ellipse cx="83" cy="92" rx="11" ry="4.5" transform="rotate(-32 83 92)"/><ellipse cx="64" cy="86" rx="11" ry="4.5" transform="rotate(-58 64 86)"/>
+            <ellipse cx="92" cy="74" rx="11" ry="4.5" transform="rotate(-32 92 74)"/><ellipse cx="73" cy="68" rx="11" ry="4.5" transform="rotate(-58 73 68)"/>
+            <ellipse cx="102" cy="56" rx="10" ry="4" transform="rotate(-32 102 56)"/><ellipse cx="84" cy="50" rx="10" ry="4" transform="rotate(-58 84 50)"/>
+            <ellipse cx="113" cy="40" rx="9" ry="3.5" transform="rotate(-32 113 40)"/><ellipse cx="97" cy="35" rx="9" ry="3.5" transform="rotate(-58 97 35)"/>
+            <ellipse cx="120" cy="28" rx="7" ry="3"/>
+          </g>
+        </g>
+        <g opacity="0.7">
+          <!-- frond 2 -->
+          <path d="M300 132 C300 90 312 56 300 18"/>
+          <g fill="currentColor" stroke="none">
+            <ellipse cx="284" cy="92" rx="11" ry="4.5" transform="rotate(28 284 92)"/><ellipse cx="316" cy="92" rx="11" ry="4.5" transform="rotate(-28 316 92)"/>
+            <ellipse cx="288" cy="72" rx="10" ry="4" transform="rotate(28 288 72)"/><ellipse cx="312" cy="72" rx="10" ry="4" transform="rotate(-28 312 72)"/>
+            <ellipse cx="291" cy="52" rx="9" ry="3.5" transform="rotate(28 291 52)"/><ellipse cx="309" cy="52" rx="9" ry="3.5" transform="rotate(-28 309 52)"/>
+            <ellipse cx="295" cy="34" rx="8" ry="3" transform="rotate(28 295 34)"/><ellipse cx="305" cy="34" rx="8" ry="3" transform="rotate(-28 305 34)"/>
+            <ellipse cx="300" cy="18" rx="6" ry="3"/>
+          </g>
+        </g>
+        <g opacity="0.85">
+          <!-- frond 3 -->
+          <path d="M540 132 C540 96 526 64 490 34"/>
+          <g fill="currentColor" stroke="none">
+            <ellipse cx="527" cy="92" rx="11" ry="4.5" transform="rotate(32 527 92)"/><ellipse cx="546" cy="86" rx="11" ry="4.5" transform="rotate(58 546 86)"/>
+            <ellipse cx="518" cy="74" rx="11" ry="4.5" transform="rotate(32 518 74)"/><ellipse cx="537" cy="68" rx="11" ry="4.5" transform="rotate(58 537 68)"/>
+            <ellipse cx="508" cy="56" rx="10" ry="4" transform="rotate(32 508 56)"/><ellipse cx="526" cy="50" rx="10" ry="4" transform="rotate(58 526 50)"/>
+            <ellipse cx="497" cy="40" rx="9" ry="3.5" transform="rotate(32 497 40)"/><ellipse cx="513" cy="35" rx="9" ry="3.5" transform="rotate(58 513 35)"/>
+            <ellipse cx="490" cy="28" rx="7" ry="3"/>
+          </g>
+        </g>
+        <g opacity="0.6">
+          <!-- frond 4 (seed samaras cluster) -->
+          <path d="M720 132 C722 98 712 70 706 44"/>
+          <g fill="currentColor" stroke="none">
+            <ellipse cx="700" cy="70" rx="4" ry="9" transform="rotate(22 700 70)"/><ellipse cx="724" cy="74" rx="4" ry="9" transform="rotate(-18 724 74)"/>
+            <ellipse cx="706" cy="54" rx="4" ry="9" transform="rotate(26 706 54)"/><ellipse cx="728" cy="58" rx="4" ry="9" transform="rotate(-14 728 58)"/>
+            <ellipse cx="712" cy="40" rx="3.5" ry="8" transform="rotate(20 712 40)"/>
+          </g>
+        </g>
+      </svg>
+
+      <div class="header-left">
+        <div class="eyebrow">Lafayette, Colorado &nbsp;·&nbsp; Invasive Tree Field Guide</div>
+        <h1>Kill the Tree of <em>Heaven.</em></h1>
+        <p class="tagline"><strong>Ailanthus altissima</strong> — a fast-spreading invasive that chokes out natives, cracks foundations, and rolls out the welcome mat for the spotted lanternfly. Here's how to spot it and actually kill it.</p>
+      </div>
+
+      <div class="header-right">
+        <div class="badge-stack">
+          <div class="id-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-9 6-16 15-17C19 13 13 21 5 21Z"/><path d="M5.5 20.5C9 15 13 12 18 9.5"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor"/><circle cx="12.5" cy="11" r="0.9" fill="currentColor"/></svg>
+            <em>Ailanthus</em>
+            <span>List C noxious weed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat stat-a">
+        <div class="stat-accent"></div>
+        <div class="stat-num">325,000+</div>
+        <div class="stat-label">seeds a single female tree can release in one year</div>
+      </div>
+      <div class="stat stat-b">
+        <div class="stat-accent"></div>
+        <div class="stat-num">List C</div>
+        <div class="stat-label">Colorado noxious weed — control is recommended statewide</div>
+      </div>
+      <div class="stat stat-c">
+        <div class="stat-accent"></div>
+        <div class="stat-num">#1 host</div>
+        <div class="stat-label">favored egg-laying tree of the spotted lanternfly</div>
+      </div>
+      <div class="stat stat-d">
+        <div class="stat-accent"></div>
+        <div class="stat-num">Jul–Oct</div>
+        <div class="stat-label">the only window when herbicide reaches and kills the roots</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- MAIN 2-COL GRID -->
+      <div class="main-grid">
+
+        <!-- Why it has to go -->
+        <div class="box box-rust">
+          <div class="box-label">Why it has to go</div>
+          <h2 style="font-size:16px;">A tree that fights the whole neighborhood</h2>
+          <ul>
+            <li>Poisons the soil around it — its roots release <strong style="color:var(--gold)">ailanthone</strong>, a chemical that suppresses native seedlings nearby</li>
+            <li>Spreads by aggressive <strong style="color:var(--gold)">root suckers</strong>, sending up clones yards away from the parent and forming dense thickets</li>
+            <li>One of the fastest-growing trees in North America, with weak, brittle wood that drops limbs</li>
+            <li>Roots heave sidewalks and invade foundations, sewer lines, and septic systems</li>
+            <li>Female trees rain down <strong style="color:var(--gold)">300,000+ winged seeds</strong> a year that blow into every open lot</li>
+            <li>It's the preferred host of the spotted lanternfly — remove it and you remove their nursery</li>
+          </ul>
+        </div>
+
+        <!-- How to kill it + Never just cut it -->
+        <div class="col-stack">
+          <div class="box box-cream">
+            <div class="box-label" style="color:var(--rust);">How to actually kill it</div>
+            <h2>Kill the roots <em style="font-style:italic;color:var(--rust);">first</em>, then cut</h2>
+            <ol class="steps">
+              <li><span><strong>Time it: mid-July to October.</strong> The tree is pumping sugars down to its roots — herbicide rides along. Spring treatment fails.</span></li>
+              <li><span><strong>Treat it standing.</strong> Seedlings &lt; 3 ft: foliar spray (triclopyr or glyphosate). Stems &lt; 6 in: <strong>basal bark</strong> — triclopyr in oil around the bottom 12–18&Prime;. Bigger: <strong>hack &amp; squirt</strong> concentrated herbicide into angled cuts ringing the trunk.</span></li>
+              <li><span><strong>Wait 30+ days,</strong> then cut and remove the dead tree. If you must cut-stump, paint herbicide on within 30 minutes.</span></li>
+              <li><span><strong>Watch for 2–3 years.</strong> Re-treat every sucker and seedling. Bag female seed material — don't compost it.</span></li>
+            </ol>
+          </div>
+
+          <div class="box box-black">
+            <div class="box-label">The #1 mistake</div>
+            <h2 style="font-size:14.5px;">Never just cut it down</h2>
+            <p style="color:rgba(255,255,255,0.8);font-size:11px;">Cut an untreated Tree of Heaven and the roots panic — a single stump can throw up <strong style="color:var(--gold)">dozens of suckers</strong> across your yard. You don't get rid of it; you multiply it. Herbicide while it's standing, in late summer, is what kills the root system.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider">How to identify it</div>
+
+      <!-- ID STRIP -->
+      <div class="id-strip">
+        <div class="id-card">
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V4"/><path d="M12 7c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 7c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 12c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 12c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 17c-1.6-2-3.7-2.6-5.6-2.6M12 17c1.6-2 3.7-2.6 5.6-2.6"/></svg></div>
+          <h4>The leaves</h4>
+          <p>Huge compound leaves 1–4 ft long, with 11–41 smooth-edged leaflets. Leaves alternate up the twig — not opposite.</p>
+        </div>
+        <div class="id-card">
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c4-6 12-6 16 0"/><path d="M4 12c1.4.6 2.6.6 4 0M9 9.4c.6 1.2.6 2.4 0 3.6M15 9.4c-.6 1.2-.6 2.4 0 3.6M20 12c-1.4.6-2.6.6-4 0"/><circle cx="7.5" cy="14.2" r="1"/><circle cx="16.5" cy="14.2" r="1"/></svg></div>
+          <h4>Glandular teeth</h4>
+          <p>The tell: 1–2 bumps ("glands") at the <em>base</em> of each otherwise smooth leaflet. Native look-alikes don't have them.</p>
+        </div>
+        <div class="id-card">
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 4c.8 2 .6 4-.6 6M15 4c-.8 2-.6 4 .6 6M8 13c1 1.5.8 3.5-.4 5M16.4 13c-1 1.5-.8 3.5.4 5M12 11v3"/></svg></div>
+          <h4>The bark</h4>
+          <p>Smooth, pale gray-brown, lightly mottled — often described as the skin of a cantaloupe. Stays smooth even on big trunks.</p>
+        </div>
+        <div class="id-card">
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5c1.4 1.6 1.4 4 0 5.6M12 4c1.6 1.8 1.6 4.6 0 6.4M16 5c1.4 1.6 1.4 4 0 5.6"/><path d="M5 15h14M6.5 19h11"/></svg></div>
+          <h4>The smell</h4>
+          <p>Crush a leaf or snap a twig: a rank, offensive odor people compare to cat urine or rotten peanut butter.</p>
+        </div>
+      </div>
+      <p class="id-note"><strong>Don't confuse it with natives.</strong> Sumac has toothed, serrated leaflets and fuzzy red stems; black walnut has dark, diamond-ridged bark and a chambered twig pith; ash has <em>opposite</em> leaves. Tree of Heaven's combo — smooth leaflet edges, basal glands, and that smell — is unique.</p>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider">Plant these instead</div>
+
+      <!-- PLANT INSTEAD ROW -->
+      <div class="plants-row">
+        <div class="plant-col">
+          <div class="plant-col-title">Native &amp; Adapted Shade Trees</div>
+          <ul>
+            <li>Bur oak <em>(Quercus macrocarpa)</em></li>
+            <li>Western hackberry <em>(Celtis occidentalis)</em></li>
+            <li>Kentucky coffeetree <em>(Gymnocladus dioicus)</em></li>
+            <li>Narrowleaf cottonwood <em>(Populus angustifolia)</em></li>
+          </ul>
+        </div>
+        <div class="plant-col">
+          <div class="plant-col-title">Small Trees &amp; Large Shrubs</div>
+          <ul>
+            <li>Gambel oak <em>(Quercus gambelii)</em></li>
+            <li>Serviceberry <em>(Amelanchier alnifolia)</em></li>
+            <li>Chokecherry <em>(Prunus virginiana)</em></li>
+            <li>American plum <em>(Prunus americana)</em></li>
+          </ul>
+        </div>
+        <div class="plant-col">
+          <div class="plant-col-title">Quick Structure &amp; Habitat</div>
+          <ul>
+            <li>Three-leaf sumac <em>(Rhus trilobata)</em></li>
+            <li>Golden currant <em>(Ribes aureum)</em></li>
+            <li>Rabbitbrush <em>(Ericameria nauseosa)</em></li>
+            <li>Wax currant <em>(Ribes cereum)</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider">Know the rules &amp; get help</div>
+
+      <!-- RESOURCES ROW -->
+      <div class="full-box legal">
+        <div class="legal-col">
+          <div class="legal-badge lb-law">Colorado Law</div>
+          <h3>List C Noxious Weed</h3>
+          <p>Tree of Heaven is on Colorado's noxious weed list. The state recommends control; counties may have local programs. See the Colorado Dept. of Agriculture (<strong>ag.colorado.gov</strong>) noxious weed pages.</p>
+        </div>
+        <div class="legal-col">
+          <div class="legal-badge lb-watch">Watch Pest</div>
+          <h3>Spotted Lanternfly</h3>
+          <p>Not yet established in Colorado (as of 2025), but it threatens grapes, peaches, and hops. If you ever see it or its egg masses, report to the CDA. Removing Tree of Heaven removes its top host.</p>
+        </div>
+        <div class="legal-col">
+          <div class="legal-badge lb-help">Get Help</div>
+          <h3>Do It Right</h3>
+          <p>CSU Extension (<strong>extension.colostate.edu</strong>) and the Boulder County weed program have guides. Always follow the herbicide label — it's the law — and hire a licensed applicator for large trees.</p>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <svg class="footer-leaf" viewBox="0 0 740 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <g stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.9">
+          <path d="M30 30 C30 18 44 8 64 4"/><path d="M150 30 C150 16 138 8 122 5"/>
+          <path d="M270 30 C270 18 284 8 304 4"/><path d="M390 30 C390 16 378 8 362 5"/>
+          <path d="M510 30 C510 18 524 8 544 4"/><path d="M630 30 C630 16 618 8 602 5"/>
+          <path d="M705 30 C707 18 700 9 695 3"/>
+        </g>
+        <g>
+          <ellipse cx="40" cy="18" rx="7" ry="2.6" transform="rotate(-30 40 18)"/><ellipse cx="52" cy="11" rx="7" ry="2.6" transform="rotate(-30 52 11)"/>
+          <ellipse cx="140" cy="17" rx="7" ry="2.6" transform="rotate(30 140 17)"/><ellipse cx="129" cy="10" rx="6.5" ry="2.4" transform="rotate(30 129 10)"/>
+          <ellipse cx="280" cy="18" rx="7" ry="2.6" transform="rotate(-30 280 18)"/><ellipse cx="292" cy="11" rx="7" ry="2.6" transform="rotate(-30 292 11)"/>
+          <ellipse cx="380" cy="17" rx="7" ry="2.6" transform="rotate(30 380 17)"/><ellipse cx="369" cy="10" rx="6.5" ry="2.4" transform="rotate(30 369 10)"/>
+          <ellipse cx="520" cy="18" rx="7" ry="2.6" transform="rotate(-30 520 18)"/><ellipse cx="532" cy="11" rx="7" ry="2.6" transform="rotate(-30 532 11)"/>
+          <ellipse cx="620" cy="17" rx="7" ry="2.6" transform="rotate(30 620 17)"/><ellipse cx="609" cy="10" rx="6.5" ry="2.4" transform="rotate(30 609 10)"/>
+        </g>
+      </svg>
+
+      <div class="one-pager-footer">
+        <div class="footer-block">
+          <strong>Kill the Tree of Heaven</strong>
+          Lafayette, Colorado<br/>
+          A companion to the Kill Your Lawn project.
+        </div>
+        <div class="footer-block center">
+          <strong style="color:var(--olive);font-size:12px;">Full native-plant guides,<br/>legal info &amp; more:</strong>
+          <span class="mono">killyourlawn.com</span>
+        </div>
+        <div class="footer-block right">
+          <span class="sourced">Sources: Colo. Dept. of Agriculture,<br/>CSU Extension, Penn State Extension,<br/>USDA. Verify timing for your site.</span>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </div><!-- /page -->
+</body>
+</html>
