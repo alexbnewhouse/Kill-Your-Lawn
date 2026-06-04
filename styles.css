@@ -188,6 +188,13 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   background: currentColor;
   opacity: 0.7;
 }
+/* On dark / olive sections rust is too low-contrast — flip the eyebrow to a
+   legible warm gold (passes AA on both black and olive backgrounds) */
+#systems .section-label,
+#bees .section-label,
+#economics .section-label,
+#native-lawn .section-label,
+#connect .section-label { color: #e7be62; }
 .section-intro {
   font-size: 1.15rem;
   color: var(--text-light);
@@ -257,6 +264,11 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   border-radius: 2px;
 }
 .nav-print:hover { background: rgba(201,153,42,0.1); }
+.nav-toh {
+  color: var(--rust) !important;
+  border-color: rgba(169,84,47,0.45);
+}
+.nav-toh:hover { background: rgba(169,84,47,0.12); }
 .nav-toggle {
   display: none;
   background: none;
@@ -2561,19 +2573,9 @@ footer {
   .footer-right { text-align: left; }
 }
 
-@media (max-width: 700px) {
-  :root { --section-pad: 70px 20px; }
-  h1 { font-size: 3.2rem; }
-
-  /* Tighten hero so CTAs are above fold on mobile */
-  #hero { min-height: auto; }
-  .hero-content { padding: 90px 20px 40px; }
-  .hero-eyebrow { margin-bottom: 0.75rem; }
-  .hero-sub { font-size: 1.05rem; margin: 1rem 0 1.5rem; line-height: 1.6; }
-  .hero-ctas { gap: 0.75rem; }
-  .hero-ctas .btn { padding: 12px 22px; font-size: 0.8rem; }
-  .hero-scroll-hint { bottom: 16px; }
-
+/* Collapse the full nav into the hamburger menu before it gets crowded
+   (10 items incl. two utility chips overflow below ~1040px) */
+@media (max-width: 1040px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -2591,8 +2593,30 @@ footer {
     padding: 12px 0;
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+  /* utility chips read as plain rows inside the dropdown */
+  .nav-links .nav-print {
+    border: none;
+    border-radius: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-links .nav-print:hover { background: none; }
   .nav-links li:last-child a { border-bottom: none; }
   .nav-toggle { display: block; }
+}
+
+@media (max-width: 700px) {
+  :root { --section-pad: 70px 20px; }
+  h1 { font-size: 3.2rem; }
+
+  /* Tighten hero so CTAs are above fold on mobile */
+  #hero { min-height: auto; }
+  .hero-content { padding: 90px 20px 40px; }
+  .hero-eyebrow { margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 1.05rem; margin: 1rem 0 1.5rem; line-height: 1.6; }
+  .hero-ctas { gap: 0.75rem; }
+  .hero-ctas .btn { padding: 12px 22px; font-size: 0.8rem; }
+  .hero-scroll-hint { bottom: 16px; }
 
   .cards { grid-template-columns: 1fr; }
   .method { grid-template-columns: 50px 1fr; gap: 1rem; }
