@@ -4,27 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kill Your Lawn — One-Pager | Lafayette, CO</title>
+  <meta name="description" content="Replace your Kentucky bluegrass lawn with native prairie plants — methods, plant list, economics, and legal info for Lafayette, Colorado. Printable one-pager." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black:    #1a1710;
-      --olive:    #4a5c3a;
-      --sage:     #7a9169;
-      --gold:     #c9992a;
-      --rust:     #b05a35;
-      --cream:    #f5f0e8;
-      --tan:      #c8b89a;
-      --text:     #2c2a24;
-      --text-lt:  #6b6455;
+      --black:     #181611;
+      --off-white: #f6f1e6;
+      --cream:     #ece3d2;
+      --tan:       #c4b491;
+      --gold:      #c08a1e;
+      --gold-deep: #9c6f12;
+      --olive:     #43543a;
+      --sage:      #7c9068;
+      --rust:      #a9542f;
+      --text:      #2a271f;
+      --text-lt:   #6a6253;
+      --serif: 'Fraunces','Hoefler Text',Georgia,serif;
+      --sans:  'Hanken Grotesk',system-ui,sans-serif;
+      --mono:  'Space Mono',ui-monospace,'SFMono-Regular',monospace;
+      --frau: "SOFT" 40,"WONK" 1;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #d8d2c6;
+      font-family: var(--sans);
+      background: #d6cfc1;
       color: var(--text);
       font-size: 13px;
       line-height: 1.55;
@@ -34,7 +41,7 @@
       max-width: 780px;
       margin: 0 auto;
       padding: 0 0 32px;
-      background: var(--cream);
+      background: var(--off-white);
       box-shadow: 0 6px 48px rgba(0,0,0,0.22);
     }
 
@@ -56,7 +63,7 @@
       color: var(--black);
       border: none;
       padding: 8px 20px;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--sans);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.06em;
@@ -64,7 +71,7 @@
       cursor: pointer;
       border-radius: 2px;
     }
-    .print-bar button:hover { background: #b5871f; }
+    .print-bar button:hover { background: var(--gold-deep); }
 
     /* ---- DARK ILLUSTRATED HEADER ---- */
     .header {
@@ -102,47 +109,50 @@
       margin-bottom: 8px;
     }
     h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--serif);
+      font-variation-settings: var(--frau);
+      font-weight: 700;
       font-size: 48px;
       line-height: 1.0;
-      color: var(--cream);
+      color: var(--off-white);
       letter-spacing: -0.01em;
     }
     h1 em { color: var(--gold); font-style: italic; }
     .tagline {
       font-size: 11.5px;
-      color: rgba(245,240,232,0.58);
+      color: rgba(246,241,230,0.58);
       max-width: 370px;
       margin-top: 10px;
       line-height: 1.55;
     }
 
-    /* QR box — dark, matching header */
-    .qr-placeholder {
-      width: 88px;
-      height: 88px;
-      border: 1.5px solid rgba(201,153,42,0.35);
+    /* Site URL block — dark, matching header */
+    .site-url {
+      border: 1.5px solid rgba(192,138,30,0.4);
       border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      color: rgba(245,240,232,0.45);
-      text-align: center;
-      gap: 4px;
-      flex-shrink: 0;
+      padding: 12px 14px;
+      max-width: 150px;
       background: rgba(255,255,255,0.03);
-    }
-    .qr-placeholder .qr-icon { font-size: 26px; opacity: 0.5; }
-    .qr-url {
-      font-size: 8px;
-      color: var(--gold);
-      font-weight: 600;
       text-align: center;
-      margin-top: 5px;
-      letter-spacing: 0.04em;
-      opacity: 0.8;
+    }
+    .site-url-label {
+      display: block;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(246,241,230,0.5);
+      margin-bottom: 6px;
+    }
+    .site-url-text {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.01em;
+      line-height: 1.45;
+      word-break: break-word;
     }
 
     /* ---- STATS — flush to header, connected visually ---- */
@@ -154,7 +164,7 @@
       background: rgba(0,0,0,0.35); /* gap color */
     }
     .stat {
-      background: #201e17;
+      background: #211d15;
       color: white;
       padding: 12px 14px 12px 18px;
       position: relative;
@@ -170,7 +180,9 @@
     .stat-money .stat-accent { background: var(--rust); }
     .stat-saves .stat-accent { background: var(--gold); }
     .stat-num {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--serif);
+      font-variation-settings: var(--frau);
+      font-weight: 600;
       font-size: 22px;
       color: var(--gold);
       line-height: 1.1;
@@ -227,7 +239,7 @@
     /* Large decorative quote mark */
     .box-olive::after {
       content: '\201C';
-      font-family: 'Playfair Display', serif;
+      font-family: var(--serif);
       font-size: 110px;
       color: rgba(255,255,255,0.07);
       position: absolute;
@@ -252,7 +264,9 @@
     .box-black .box-label { color: rgba(255,255,255,0.7); }
 
     .box h2 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--serif);
+      font-variation-settings: var(--frau);
+      font-weight: 600;
       font-size: 15px;
       margin-bottom: 8px;
       line-height: 1.2;
@@ -398,7 +412,9 @@
       margin: 0 36px 12px;
     }
     .legal-col h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--serif);
+      font-variation-settings: var(--frau);
+      font-weight: 600;
       font-size: 12px;
       margin-bottom: 5px;
       color: var(--black);
@@ -421,7 +437,7 @@
     }
     .lb-law    { background: var(--rust); }
     .lb-prog   { background: var(--olive); }
-    .lb-source { background: #7a6820; }
+    .lb-source { background: var(--gold-deep); }
 
     /* ---- FOOTER ---- */
     .footer-grass {
@@ -446,21 +462,83 @@
     .footer-block.center { text-align: center; }
     .footer-block.right { text-align: right; }
     .inspired-by { font-size: 9px; color: var(--text-lt); font-style: italic; }
+    .footer-backlink {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--olive);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Print-only footer line (hidden on screen) */
+    .print-note { display: none; }
 
     /* ---- PRINT ---- */
+    @page { margin: 0.5in; }
     @media print {
       .print-bar { display: none; }
-      body { background: white; }
-      .page { padding: 0 0 16px; max-width: 100%; box-shadow: none; }
+      .footer-backlink { display: none; }
+      body { background: white; margin: 0; }
+      .page { margin: 0; padding: 0 0 16px; max-width: 100%; box-shadow: none; }
       h1 { font-size: 40px; }
-      .header { padding: 20px 28px 20px; }
-      .stats { gap: 1px; }
+      .header { padding: 20px 28px 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .stats { gap: 1px; background: transparent; }
       .main-grid, .photo-strip, .plants-row { padding: 0 28px; }
       .section-divider { margin-left: 28px; margin-right: 28px; }
       .full-box.legal { margin-left: 28px; margin-right: 28px; }
       .footer-grass, .one-pager-footer { padding-left: 28px; padding-right: 28px; }
       .photo-strip-note { padding-right: 28px; }
       .content-area { padding-top: 14px; }
+
+      /* Keep content together across page breaks */
+      .box, .stat, .stats, .plant-col, .photo-strip-item,
+      .full-box.legal, .legal-col, .obj, .one-pager-footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Lighten ink-heavy boxes — header stays dark, content prints on white */
+      .stat {
+        background: #fff;
+        color: var(--text);
+        border: 1px solid var(--tan);
+      }
+      .stat-num { color: var(--gold-deep); }
+      .stat-label { color: var(--text-lt); }
+      .box-olive {
+        background: #fff;
+        color: var(--text);
+        border: 1.5px solid var(--olive);
+      }
+      .box-olive::after { color: rgba(0,0,0,0.06); }
+      .box-olive .box-label { color: var(--olive); }
+      .box-olive li { border-color: rgba(0,0,0,0.1); }
+      .obj { border-bottom-color: rgba(0,0,0,0.12); }
+      .obj-q { color: var(--black); }
+      .obj-a { color: var(--text-lt); }
+      .box-black {
+        background: #fff;
+        color: var(--text);
+        border: 1.5px solid var(--black);
+      }
+      .box-black .box-label { color: var(--text-lt); }
+      .box-black h2 { color: var(--black) !important; }
+      .box-black li { border-color: rgba(0,0,0,0.1); }
+      .box-black li strong { color: var(--gold-deep) !important; }
+      .site-url { border-color: var(--gold); }
+
+      .print-note {
+        display: block;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 8.5px;
+        color: var(--text-lt);
+        letter-spacing: 0.04em;
+        margin-top: 10px;
+        padding: 0 28px;
+      }
     }
 
     /* ---- MOBILE ---- */
@@ -483,7 +561,7 @@
 <body>
 
   <div class="print-bar">
-    <span>Share with a neighbor &mdash; <a href="index.html">full site at killyourlawn.com</a></span>
+    <span>Share with a neighbor &mdash; <a href="index.html">full site online</a></span>
     <button onclick="window.print()">&#128438; Print This</button>
   </div>
 
@@ -592,11 +670,10 @@
       </div>
 
       <div class="header-right">
-        <div class="qr-placeholder">
-          <span class="qr-icon">&#9638;</span>
-          <span>Scan for<br/>full site</span>
+        <div class="site-url">
+          <span class="site-url-label">Full site</span>
+          <span class="site-url-text">alexbnewhouse.github.io/<wbr/>Kill-Your-Lawn</span>
         </div>
-        <div class="qr-url">killyourlawn<br/>lafayette.com</div>
       </div>
     </div>
 
@@ -814,16 +891,19 @@
         <div class="footer-block">
           <strong>Kill Your Lawn</strong>
           Lafayette, Colorado<br/>
-          A semi-rewilded front yard in progress.
+          A one-page summary of the full Kill Your Lawn project.<br/>
+          <a class="footer-backlink" href="index.html">&larr; Back to the full site</a>
         </div>
         <div class="footer-block center">
           <strong style="color:var(--olive);font-size:13px;">Full site, plant guides,<br/>legal info &amp; wildlife log:</strong>
-          <span style="color:var(--gold);font-weight:600;font-size:12px;">killyourlawn.com</span>
+          <span style="color:var(--gold-deep);font-weight:700;font-size:10px;font-family:var(--mono);">alexbnewhouse.github.io/Kill-Your-Lawn</span>
         </div>
         <div class="footer-block right">
           <span class="inspired-by">Inspired by Doug Tallamy,<br/>Lauren Springer Ogden<br/>&amp; Joey Santore</span>
         </div>
       </div>
+
+      <p class="print-note">Printed from alexbnewhouse.github.io/Kill-Your-Lawn</p>
 
     </div><!-- /content-area -->
   </div><!-- /page -->

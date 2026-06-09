@@ -1,12 +1,9 @@
 // Kill Your Lawn — app.js
 
-// ---- Sticky nav background on scroll ----
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ---- Mobile nav toggle ----
+const nav = document.getElementById('nav');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const navOverlay = document.createElement('div');
@@ -94,121 +91,87 @@ function renderWildlifeLog() {
 
 renderWildlifeLog();
 
-// ---- Root depth chart animation ----
-const rootBars = document.querySelectorAll('.root-bar');
-const rootObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // stagger each bar
-      const bars = entry.target.querySelectorAll('.root-bar');
-      bars.forEach((bar, i) => {
-        setTimeout(() => bar.classList.add('animated'), 200 + i * 180);
-      });
-      rootObserver.unobserve(entry.target);
-    }
+// ---- Scroll-triggered animations ----
+// Each entry: selector for the container, and a function applying its final state.
+// With reduced motion, the final state is applied immediately on load instead
+// (the CSS media query strips the transitions, so nothing moves).
+
+function animateRootChart(chart) {
+  chart.querySelectorAll('.root-bar').forEach((bar, i) => {
+    if (prefersReducedMotion) bar.classList.add('animated');
+    else setTimeout(() => bar.classList.add('animated'), 200 + i * 180);
   });
-}, { threshold: 0.2 });
-
-const rootChart = document.querySelector('.root-columns');
-if (rootChart) rootObserver.observe(rootChart);
-
-// ---- Resilience bars animation (scroll-triggered) ----
-const resilienceGrid = document.querySelector('.resilience-grid');
-if (resilienceGrid) {
-  const resilienceObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-        resilienceObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.25 });
-  resilienceObserver.observe(resilienceGrid);
 }
 
-// ---- Water use & insect support bar animations ----
-document.querySelectorAll('.water-use-compare, .insect-support-compare').forEach(el => {
+function animateBloomCalendar(calendar) {
+  if (!prefersReducedMotion) {
+    calendar.querySelectorAll('.bloom-bar-fill').forEach((bar, i) => {
+      bar.style.transitionDelay = `${i * 80}ms`;
+    });
+  }
+  calendar.classList.add('animated');
+}
+
+function observeOnce(el, onIntersect, threshold) {
+  if (prefersReducedMotion) {
+    onIntersect(el);
+    return;
+  }
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
+        onIntersect(entry.target);
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold });
   obs.observe(el);
+}
+
+const rootChart = document.querySelector('.root-columns');
+if (rootChart) observeOnce(rootChart, animateRootChart, 0.2);
+
+const bloomCalendar = document.querySelector('.bloom-calendar');
+if (bloomCalendar) observeOnce(bloomCalendar, animateBloomCalendar, 0.15);
+
+const resilienceGrid = document.querySelector('.resilience-grid');
+if (resilienceGrid) observeOnce(resilienceGrid, el => el.classList.add('animated'), 0.25);
+
+document.querySelectorAll('.water-use-compare, .insect-support-compare').forEach(el => {
+  observeOnce(el, t => t.classList.add('animated'), 0.3);
 });
 
-// ---- Bloom calendar animation ----
-const bloomCalendar = document.querySelector('.bloom-calendar');
-if (bloomCalendar) {
-  const bloomObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // stagger each bar for a cascading effect
-        const bars = entry.target.querySelectorAll('.bloom-bar-fill');
-        bars.forEach((bar, i) => {
-          bar.style.transitionDelay = `${i * 80}ms`;
-        });
-        entry.target.classList.add('animated');
-        bloomObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  bloomObserver.observe(bloomCalendar);
-}
+const mosaicGrid = document.getElementById('mosaic-grid');
+if (mosaicGrid) observeOnce(mosaicGrid, el => el.classList.add('animated'), 0.3);
 
 // ---- Scroll fade-in animations ----
 const fadeEls = document.querySelectorAll(
-  '.card, .callout-aside, .resilience-metric, .bee-card, .bee-vs-wasp, ' +
+  '.card, .resilience-metric, .bee-card, .bee-vs-wasp, ' +
   '.method, .start-option, .plant-category, .timeline-item, ' +
   '.resource-person, .resource-link-block, .legal-item, .econ-stat, ' +
   '.bib-category, .year3-stage, .faq-item, .system-block, .loop, ' +
   '.water-use-compare, .insect-support-compare, .bloom-calendar'
 );
-fadeEls.forEach(el => el.classList.add('fade-in'));
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const siblings = [...entry.target.parentElement.children];
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, idx * 70);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-fadeEls.forEach(el => observer.observe(el));
-
-// ---- Mosaic corridor animation ----
-const mosaicGrid = document.getElementById('mosaic-grid');
-if (mosaicGrid) {
-  const mosaicObserver = new IntersectionObserver((entries) => {
+if (!prefersReducedMotion) {
+  fadeEls.forEach(el => el.classList.add('fade-in'));
+  const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        mosaicGrid.classList.add('animated');
-        mosaicObserver.unobserve(entry.target);
+        const siblings = [...entry.target.parentElement.children];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 70);
+        fadeObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
-  mosaicObserver.observe(mosaicGrid);
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
 }
 
-// ---- Back to top button ----
+// ---- Consolidated scroll handler: nav state, back-to-top, active link ----
 const backToTop = document.getElementById('back-to-top');
-if (backToTop) {
-  window.addEventListener('scroll', () => {
-    backToTop.classList.toggle('visible', window.scrollY > 600);
-  }, { passive: true });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-// ---- Active nav link highlighting ----
 const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
 const sections = [...navLinksAll].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 
@@ -222,8 +185,27 @@ function updateActiveNav() {
     a.classList.toggle('active', current && a.getAttribute('href') === '#' + current.id);
   });
 }
-window.addEventListener('scroll', updateActiveNav, { passive: true });
-updateActiveNav();
+
+let scrollScheduled = false;
+function onScroll() {
+  if (scrollScheduled) return;
+  scrollScheduled = true;
+  requestAnimationFrame(() => {
+    scrollScheduled = false;
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    if (backToTop) backToTop.classList.toggle('visible', y > 600);
+    updateActiveNav();
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+}
 
 // ---- Email signup form (Formspree) ----
 const signupForm = document.getElementById('signup-form');
@@ -232,6 +214,7 @@ if (signupForm) {
     e.preventDefault();
     const form = e.target;
     const success = document.getElementById('signup-success');
+    const errorEl = document.getElementById('signup-error');
     const data = new FormData(form);
 
     try {
@@ -242,16 +225,13 @@ if (signupForm) {
       });
       if (response.ok) {
         form.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'none';
         success.style.display = 'block';
-      } else {
-        // If Formspree isn't configured yet, still show success for demo
-        form.style.display = 'none';
-        success.style.display = 'block';
+      } else if (errorEl) {
+        errorEl.style.display = 'block';
       }
     } catch {
-      // Offline or endpoint not configured — show success for demo
-      form.style.display = 'none';
-      success.style.display = 'block';
+      if (errorEl) errorEl.style.display = 'block';
     }
   });
 }

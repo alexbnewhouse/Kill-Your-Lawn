@@ -15,6 +15,7 @@
       --cream:   #ece3d2;
       --tan:     #c4b491;
       --gold:    #c08a1e;
+      --gold-deep: #9c6f12;
       --olive:   #43543a;
       --sage:    #7c9068;
       --rust:    #a9542f;
@@ -227,7 +228,7 @@
     .id-card { background: #fff; border: 1px solid var(--tan); border-top: 3px solid var(--rust); border-radius: 0 0 4px 4px; padding: 12px 13px; }
     .id-card .id-ico { color: var(--olive); margin-bottom: 7px; }
     .id-card .id-ico svg { width: 26px; height: 26px; display: block; }
-    .id-card h4 { font-family: var(--serif); font-variation-settings: var(--frau); font-weight: 600; font-size: 12.5px; color: var(--ink); margin-bottom: 3px; }
+    .id-card h3 { font-family: var(--serif); font-variation-settings: var(--frau); font-weight: 600; font-size: 12.5px; color: var(--ink); margin-bottom: 3px; }
     .id-card p { font-size: 9.7px; color: var(--text-lt); line-height: 1.42; }
     .id-note {
       font-size: 9.5px; color: var(--text-lt); padding: 7px 38px 0; line-height: 1.5;
@@ -281,24 +282,89 @@
     .footer-block.right { text-align: right; }
     .footer-block .mono { font-family: var(--mono); font-weight: 700; color: var(--gold); font-size: 11px; letter-spacing: 0.02em; }
     .sourced { font-size: 8.5px; color: var(--text-lt); font-style: italic; }
+    .footer-backlink {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--olive);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Print-only footer line (hidden on screen) */
+    .print-note { display: none; }
 
     /* ---- PRINT ---- */
+    @page { margin: 0.5in; }
     @media print {
       .print-bar { display: none; }
-      body { background: #fff; }
-      .page { padding: 0 0 16px; max-width: 100%; box-shadow: none; }
+      .footer-backlink { display: none; }
+      body { background: #fff; margin: 0; }
+      .page { margin: 0; padding: 0 0 16px; max-width: 100%; box-shadow: none; }
       .page::before { display: none; }
       h1 { font-size: 42px; }
       .latin { font-size: 70px; }
       .header { padding: 22px 30px; }
-      .stats { gap: 1px; }
+      .stats { gap: 1px; background: transparent; }
       .main-grid, .id-strip, .plants-row { padding: 0 30px; }
       .section-divider, .id-note { margin-left: 30px; margin-right: 30px; }
       .id-note { padding-left: 30px; padding-right: 30px; }
       .full-box.legal { margin-left: 30px; margin-right: 30px; }
       .footer-leaf, .one-pager-footer { padding-left: 30px; padding-right: 30px; }
       .content-area { padding-top: 14px; }
-      .box-rust, .box-black, .stat, .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* Keep content together across page breaks */
+      .box, .stat, .stats, .id-card, .plant-col,
+      .full-box.legal, .legal-col, .steps li, .one-pager-footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Lighten ink-heavy boxes — header stays dark, content prints on white */
+      .stat {
+        background: #fff;
+        color: var(--text);
+        border: 1px solid var(--tan);
+      }
+      .stat-num { color: var(--gold-deep); }
+      .stat-a .stat-num { color: var(--rust); }
+      .stat-label { color: var(--text-lt); }
+      .box-rust {
+        background: #fff;
+        color: var(--text);
+        border: 1.5px solid var(--alarm);
+      }
+      .box-rust::after { color: rgba(0,0,0,0.05); }
+      .box-rust .box-label { color: var(--alarm); }
+      .box-rust h2 { color: var(--ink); }
+      .box-rust li { color: var(--text); border-color: rgba(0,0,0,0.1); }
+      .box-rust li::before { background: var(--rust); }
+      .box-rust li strong { color: var(--rust) !important; }
+      .box-black {
+        background: #fff;
+        color: var(--text);
+        border: 1.5px solid var(--ink);
+      }
+      .box-black .box-label { color: var(--text-lt); }
+      .box-black h2 { color: var(--ink); }
+      .box-black p { color: var(--text) !important; }
+      .box-black p strong { color: var(--rust) !important; }
+      .box-black li { color: var(--text); border-color: rgba(0,0,0,0.1); }
+      .box-black li strong { color: var(--rust); }
+      .footer-block .mono { color: var(--gold-deep); }
+
+      .print-note {
+        display: block;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 8.5px;
+        color: var(--text-lt);
+        letter-spacing: 0.04em;
+        margin-top: 10px;
+        padding: 0 30px;
+      }
     }
 
     /* ---- MOBILE ---- */
@@ -323,7 +389,7 @@
 
   <div class="print-bar">
     <span>From the <a href="index.html">Kill Your Lawn</a> project &mdash; share with a neighbor</span>
-    <button onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-6h16v6h-2M8 14h8v7H8z"/></svg>Print this</button>
+    <button onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-6h16v6h-2M8 14h8v7H8z"/></svg>Print this</button>
   </div>
 
   <div class="page">
@@ -332,7 +398,7 @@
     <div class="header">
 
       <!-- Compound-leaf silhouette -->
-      <svg class="header-illustration" viewBox="0 0 800 132" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+      <svg class="header-illustration" viewBox="0 0 800 132" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" role="img" aria-label="Silhouette illustration of Tree of Heaven compound leaves and winged seed clusters" preserveAspectRatio="xMidYMax meet">
         <g opacity="0.9">
           <!-- frond 1 -->
           <path d="M70 132 C70 96 84 64 120 34"/>
@@ -386,7 +452,7 @@
       <div class="header-right">
         <div class="badge-stack">
           <div class="id-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-9 6-16 15-17C19 13 13 21 5 21Z"/><path d="M5.5 20.5C9 15 13 12 18 9.5"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor"/><circle cx="12.5" cy="11" r="0.9" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21c0-9 6-16 15-17C19 13 13 21 5 21Z"/><path d="M5.5 20.5C9 15 13 12 18 9.5"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor"/><circle cx="12.5" cy="11" r="0.9" fill="currentColor"/></svg>
             <em>Ailanthus</em>
             <span>List C noxious weed</span>
           </div>
@@ -465,23 +531,23 @@
       <!-- ID STRIP -->
       <div class="id-strip">
         <div class="id-card">
-          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V4"/><path d="M12 7c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 7c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 12c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 12c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 17c-1.6-2-3.7-2.6-5.6-2.6M12 17c1.6-2 3.7-2.6 5.6-2.6"/></svg></div>
-          <h4>The leaves</h4>
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V4"/><path d="M12 7c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 7c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 12c-2-2.4-4.6-3-7-3 .4 2.5 2 4.3 4.4 4.8M12 12c2-2.4 4.6-3 7-3-.4 2.5-2 4.3-4.4 4.8"/><path d="M12 17c-1.6-2-3.7-2.6-5.6-2.6M12 17c1.6-2 3.7-2.6 5.6-2.6"/></svg></div>
+          <h3>The leaves</h3>
           <p>Huge compound leaves 1–4 ft long, with 11–41 smooth-edged leaflets. Leaves alternate up the twig — not opposite.</p>
         </div>
         <div class="id-card">
-          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c4-6 12-6 16 0"/><path d="M4 12c1.4.6 2.6.6 4 0M9 9.4c.6 1.2.6 2.4 0 3.6M15 9.4c-.6 1.2-.6 2.4 0 3.6M20 12c-1.4.6-2.6.6-4 0"/><circle cx="7.5" cy="14.2" r="1"/><circle cx="16.5" cy="14.2" r="1"/></svg></div>
-          <h4>Glandular teeth</h4>
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12c4-6 12-6 16 0"/><path d="M4 12c1.4.6 2.6.6 4 0M9 9.4c.6 1.2.6 2.4 0 3.6M15 9.4c-.6 1.2-.6 2.4 0 3.6M20 12c-1.4.6-2.6.6-4 0"/><circle cx="7.5" cy="14.2" r="1"/><circle cx="16.5" cy="14.2" r="1"/></svg></div>
+          <h3>Glandular teeth</h3>
           <p>The tell: 1–2 bumps ("glands") at the <em>base</em> of each otherwise smooth leaflet. Native look-alikes don't have them.</p>
         </div>
         <div class="id-card">
-          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 4c.8 2 .6 4-.6 6M15 4c-.8 2-.6 4 .6 6M8 13c1 1.5.8 3.5-.4 5M16.4 13c-1 1.5-.8 3.5.4 5M12 11v3"/></svg></div>
-          <h4>The bark</h4>
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 4c.8 2 .6 4-.6 6M15 4c-.8 2-.6 4 .6 6M8 13c1 1.5.8 3.5-.4 5M16.4 13c-1 1.5-.8 3.5.4 5M12 11v3"/></svg></div>
+          <h3>The bark</h3>
           <p>Smooth, pale gray-brown, lightly mottled — often described as the skin of a cantaloupe. Stays smooth even on big trunks.</p>
         </div>
         <div class="id-card">
-          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5c1.4 1.6 1.4 4 0 5.6M12 4c1.6 1.8 1.6 4.6 0 6.4M16 5c1.4 1.6 1.4 4 0 5.6"/><path d="M5 15h14M6.5 19h11"/></svg></div>
-          <h4>The smell</h4>
+          <div class="id-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5c1.4 1.6 1.4 4 0 5.6M12 4c1.6 1.8 1.6 4.6 0 6.4M16 5c1.4 1.6 1.4 4 0 5.6"/><path d="M5 15h14M6.5 19h11"/></svg></div>
+          <h3>The smell</h3>
           <p>Crush a leaf or snap a twig: a rank, offensive odor people compare to cat urine or rotten peanut butter.</p>
         </div>
       </div>
@@ -565,16 +631,19 @@
         <div class="footer-block">
           <strong>Kill the Tree of Heaven</strong>
           Lafayette, Colorado<br/>
-          A companion to the Kill Your Lawn project.
+          A companion to the Kill Your Lawn project.<br/>
+          <a class="footer-backlink" href="index.html">&larr; Back to the full site</a>
         </div>
         <div class="footer-block center">
           <strong style="color:var(--olive);font-size:12px;">Full native-plant guides,<br/>legal info &amp; more:</strong>
-          <span class="mono">killyourlawn.com</span>
+          <span class="mono" style="font-size:10px;">alexbnewhouse.github.io/Kill-Your-Lawn</span>
         </div>
         <div class="footer-block right">
           <span class="sourced">Sources: Colo. Dept. of Agriculture,<br/>CSU Extension, Penn State Extension,<br/>USDA. Verify timing for your site.</span>
         </div>
       </div>
+
+      <p class="print-note">Printed from alexbnewhouse.github.io/Kill-Your-Lawn/tree-of-heaven.html</p>
 
     </div><!-- /content-area -->
   </div><!-- /page -->

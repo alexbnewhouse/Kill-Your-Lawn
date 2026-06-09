@@ -10,6 +10,7 @@
   --cream:      #ece3d2;
   --tan:        #c4b491;
   --gold:       #c08a1e;
+  --gold-light: #d49a26;
   --gold-deep:  #9c6f12;
   --olive:      #43543a;
   --sage:       #7c9068;
@@ -29,6 +30,9 @@
   --max-width: 1120px;
   --measure: 64ch;
 }
+
+/* Skip-link landing target — no visible ring on the whole page body */
+main:focus { outline: none; }
 
 /* ---- SKIP LINK (accessibility) ---- */
 .skip-link {
@@ -142,8 +146,8 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   box-shadow: 0 1px 0 var(--gold-deep), 0 8px 18px -8px rgba(157,111,18,0.7);
 }
 .btn-primary:hover {
-  background: #d49a26;
-  border-color: #d49a26;
+  background: var(--gold-light);
+  border-color: var(--gold-light);
   transform: translateY(-2px);
   box-shadow: 0 2px 0 var(--gold-deep), 0 14px 26px -10px rgba(157,111,18,0.7);
 }
@@ -264,11 +268,6 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   border-radius: 2px;
 }
 .nav-print:hover { background: rgba(201,153,42,0.1); }
-.nav-toh {
-  color: var(--rust) !important;
-  border-color: rgba(169,84,47,0.45);
-}
-.nav-toh:hover { background: rgba(169,84,47,0.12); }
 .nav-toggle {
   display: none;
   background: none;
@@ -412,34 +411,6 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
 .card h3 { margin-bottom: 0.6rem; font-size: 1.25rem; }
 .card p { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
 
-/* Callout aside — used for longer standalone points */
-.callout-aside {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.2rem;
-  align-items: start;
-  margin-top: 2rem;
-  padding: 1.5rem 2rem;
-  background: var(--cream);
-  border-left: 3px solid var(--gold);
-  border-radius: 0 4px 4px 0;
-}
-.callout-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-  padding-top: 2px;
-  color: var(--gold);
-}
-.callout-icon svg { width: 30px; height: 30px; display: block; }
-.callout-body h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-}
-.callout-body p {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  line-height: 1.7;
-}
 
 /* =====================================================
    CLIMATE RESILIENCE COMPARISON (within Why section)
@@ -466,7 +437,6 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   gap: 2.5rem;
   margin-bottom: 2rem;
 }
-.resilience-metric {}
 .resilience-icon {
   font-size: 1.6rem;
   margin-bottom: 0.6rem;
@@ -651,7 +621,7 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
 
 .bee-photo-credit {
   font-size: 0.78rem;
-  color: rgba(245,240,232,0.35);
+  color: rgba(245,240,232,0.6);
 }
 .bee-photo-credit a {
   color: var(--sage);
@@ -1558,7 +1528,6 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   padding-bottom: 1.2rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.lawn-stat {}
 .ls-val {
   display: block;
   font-family: var(--font-serif);
@@ -1799,7 +1768,6 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
-.year3-stage {}
 .stage-label {
   font-size: 0.75rem;
   letter-spacing: 0.12em;
@@ -1982,7 +1950,7 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   text-underline-offset: 2px;
 }
 .resource-links a:hover, .resource-link-block a:hover, .resource-legal-list a:hover {
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 
 .resource-more h3 { font-size: 1.4rem; margin-bottom: 1.5rem; }
@@ -2236,6 +2204,10 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   background: rgba(255,255,255,0.2);
   border-color: var(--gold);
 }
+.btn-share:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
 
 /* Photo gallery placeholder */
 .yard-photos {
@@ -2283,6 +2255,15 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; }
   padding: 1rem;
   border-radius: 3px;
   font-size: 0.95rem;
+}
+.signup-error {
+  background: rgba(169,84,47,0.18);
+  border: 1px solid var(--rust);
+  color: #e8a285;
+  padding: 1rem;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  margin-top: 1rem;
 }
 
 /* =====================================================
