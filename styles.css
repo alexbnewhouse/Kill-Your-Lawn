@@ -2940,3 +2940,73 @@ footer {
 @media (max-width: 700px) {
   .tree-list { grid-template-columns: 1fr; gap: 1.35rem; }
 }
+
+/* =====================================================
+   HABITAT — shrubs & trees + the wildlife they bring
+   ===================================================== */
+#habitat { background: var(--cream); }
+.woody-group + .woody-group { margin-top: 2.75rem; }
+.woody-head {
+  font-size: 1.35rem;
+  margin-bottom: 1.3rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--tan);
+}
+.woody-group .tree-list { border-top: none; padding-top: 0; }
+
+.wild-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: -1.25rem 0 2.5rem;
+}
+.wild-legend .wild-tag {
+  background: transparent;
+  border: none;
+  padding: 2px 0;
+  color: var(--text-light);
+}
+
+.wild-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.85rem;
+}
+.wild-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background: var(--off-white);
+  border: 1px solid var(--tan);
+  border-radius: 999px;
+  padding: 3px 10px 3px 8px;
+  line-height: 1.5;
+}
+.wild-tag::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--wt, var(--sage));
+  flex-shrink: 0;
+}
+.wt-bee     { --wt: #2f5d3a; }
+.wt-bird    { --wt: #5f6b86; }
+.wt-flutter { --wt: #bf7b3c; }
+.wt-mammal  { --wt: #7a5230; }
+
+.woody-foot {
+  margin-top: 2.5rem;
+  max-width: 66ch;
+  font-style: italic;
+  color: var(--text-light);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  border-left: 2px solid var(--sage);
+  padding-left: 1.1rem;
+}
