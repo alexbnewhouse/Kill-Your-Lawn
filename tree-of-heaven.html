@@ -195,14 +195,14 @@
     .box p, .box li { font-size: 11px; line-height: 1.5; }
     .box ul { list-style: none; padding: 0; }
     .box li {
-      padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.07);
-      display: flex; gap: 7px; align-items: baseline; position: relative; z-index: 1;
+      padding: 5px 0 5px 13px; border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: relative; z-index: 1;
     }
     .box-rust li { border-color: rgba(255,255,255,0.14); color: rgba(255,255,255,0.92); }
     .box-black li { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
     .box-cream li { color: var(--text); }
     .box li:last-child { border-bottom: none; }
-    .box li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; margin-top: 6px; background: currentColor; opacity: 0.5; }
+    .box li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.5; }
     .box-rust li::before { background: var(--gold); opacity: 0.9; }
     .box-cream li strong { color: var(--ink); }
     .box-black li strong { color: var(--gold); }
@@ -219,7 +219,7 @@
     .steps li::before {
       counter-increment: s; content: counter(s);
       font-family: var(--mono); font-weight: 700; font-size: 12px;
-      color: var(--rust); background: none; width: auto; height: auto; border-radius: 0; margin: 0;
+      color: var(--rust); background: none; width: auto; height: auto; border-radius: 0; margin: 0; position: static;
     }
     .steps li strong { color: var(--ink); }
 
