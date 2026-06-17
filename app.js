@@ -255,3 +255,118 @@ function shareLink(method) {
     });
   }
 }
+
+// ---- Pollinator Lab: hover a native plant, the real visitors fly in ----
+(function () {
+  const lab = document.getElementById('pollinator-lab');
+  if (!lab) return;
+  lab.hidden = false;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Field-guide line-art glyphs (inherit currentColor)
+  const G = {
+    bee: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="14.5" rx="4.2" ry="5.5"/><path d="M7.9 13h8.2M8.4 16.4h7.2"/><path d="M9.2 9.6C6.8 7.4 4 8 4.2 10.2c.15 1.7 2.3 2.4 4.7 1.2"/><path d="M14.8 9.6c2.4-2.2 5.2-1.6 5 .6-.15 1.7-2.3 2.4-4.7 1.2"/><path d="M10.4 9 9.2 6.3M13.6 9l1.2-2.7"/></svg>',
+    butterfly: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7.5V17"/><path d="M12 8.5C9.2 4.2 3.5 4.8 4 9.3c.3 2.8 4 3.4 8 1.2"/><path d="M12 8.5c2.8-4.3 8.5-3.7 8 .8-.3 2.8-4 3.4-8 1.2"/><path d="M12 11.6c-2.2 4-6.3 4.2-5.8.9"/><path d="M12 11.6c2.2 4 6.3 4.2 5.8.9"/><path d="M12 7.5 10.6 5.2M12 7.5 13.4 5.2"/></svg>',
+    moth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="1.5" ry="4.6"/><path d="M11 9.6C8 5.6 3.6 6.4 4.1 10c.34 2.6 3.9 3.5 6.9 1.9"/><path d="M13 9.6c3-4 7.4-3.2 6.9.4-.34 2.6-3.9 3.5-6.9 1.9"/><path d="M11.2 8.9 9.3 6.6M12.8 8.9l1.9-2.3"/></svg>',
+    hummingbird: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9.2c2.6 1.1 4.6 2.9 5.9 5.4"/><path d="M15 13.5c-1.4 1.9-3.5 2.7-5.2 2.2-1.1-.3-1.3-1.6-.3-2.3 1.7-1.2 4.1-1.4 5.5.1z"/><path d="M14.6 13.7 20.6 11.9"/><path d="M9.7 16.1 8.5 19.5M11.5 16.3l-.5 3.4"/><circle cx="13.4" cy="12.6" r="0.5" fill="currentColor" stroke="none"/></svg>',
+    beetle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13.6" rx="3.6" ry="5.4"/><path d="M12 8.6V19"/><circle cx="12" cy="6.6" r="1.9"/><path d="M8.6 11.6 5.7 9.9M8.4 14.6H5.3M8.7 17.4 5.9 19.2M15.4 11.6l2.9-1.7M15.6 14.6h3.1M15.3 17.4l2.8 1.8"/><path d="M10.9 5.3 9.6 3.5M13.1 5.3l1.3-1.8"/></svg>',
+    bird: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5.6 13.6c0-3 2.6-5.2 5.6-5.2 2.3 0 3.7 1.3 4.4 3.2l3.4 1.2-2.9 1.4c-.6 2.3-2.7 3.9-5.3 3.9-2.8 0-5.2-1.6-5.2-4.5z"/><path d="M4.3 12.3 6.1 12.7"/><path d="M9.7 16.5 9.1 19.5M12.3 16.7l.3 3"/><circle cx="13.6" cy="11.5" r="0.5" fill="currentColor" stroke="none"/></svg>'
+  };
+
+  // Real Front Range plant → pollinator relationships
+  const PLANTS = [
+    { name: 'Wild bergamot', latin: 'Monarda fistulosa', img: 'images/plants/wild_bergamot.jpg',
+      blurb: 'Tubular lavender heads built for long tongues — bumble bees work them by day, hawkmoths at dusk.',
+      visitors: [['bee', 'Bumble bee'], ['moth', 'Hummingbird moth'], ['bee', 'Leafcutter bee'], ['hummingbird', 'Hummingbird']] },
+    { name: 'Rocky Mtn penstemon', latin: 'Penstemon strictus', img: 'images/plants/rocky_mountain_penstemon.jpg',
+      blurb: 'Violet-blue tubes sized for queen bumble bees — and raided by hummingbirds on the wing.',
+      visitors: [['bee', 'Bumble bee'], ['bee', 'Mason bee'], ['bee', 'Digger bee'], ['hummingbird', 'Broad-tailed hummingbird']] },
+    { name: 'Purple prairie clover', latin: 'Dalea purpurea', img: 'images/plants/purple_prairie_clover.jpg',
+      blurb: 'A nitrogen-fixing pollen powerhouse, and one of the best small-bee plants on the Front Range.',
+      visitors: [['bee', 'Leafcutter bee'], ['bee', 'Green sweat bee'], ['butterfly', 'Sulphur butterfly'], ['bee', 'Digger bee']] },
+    { name: 'Blanket flower', latin: 'Gaillardia aristata', img: 'images/plants/blanket_flower.jpg',
+      blurb: 'Open, daisy-like landing pads that welcome just about everyone, all summer long.',
+      visitors: [['bee', 'Sweat bee'], ['bee', 'Leafcutter bee'], ['butterfly', 'Painted lady'], ['beetle', 'Soldier beetle']] },
+    { name: 'Maximilian sunflower', latin: 'Helianthus maximiliani', img: 'images/plants/maximilian_sunflower.jpg',
+      blurb: 'Late gold that feeds specialist sunflower bees — then feeds goldfinches its seed.',
+      visitors: [['bee', 'Sunflower bee'], ['bee', 'Sweat bee'], ['bird', 'American goldfinch'], ['butterfly', 'Painted lady']] },
+    { name: 'Rabbitbrush', latin: 'Ericameria nauseosa', img: 'images/plants/rabbitbrush.jpg',
+      blurb: 'When little else blooms, this is the fall fuel stop for insects and migrants heading south.',
+      visitors: [['bee', 'Green sweat bee'], ['butterfly', 'Painted lady'], ['butterfly', 'Migrating monarch'], ['beetle', 'Soldier beetle']] }
+  ];
+
+  const plantsEl = lab.querySelector('.pl-plants');
+  const stageEl = lab.querySelector('.pl-stage');
+
+  PLANTS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'pl-plant';
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', 'false');
+    b.innerHTML = '<img src="' + p.img + '" alt="" width="42" height="42" loading="lazy">' +
+      '<span class="pl-plant-name">' + p.name + '<em>' + p.latin + '</em></span>';
+    b.addEventListener('mouseenter', () => select(i));
+    b.addEventListener('focus', () => select(i));
+    b.addEventListener('click', () => select(i));
+    plantsEl.appendChild(b);
+  });
+
+  let current = -1;
+  function select(i) {
+    if (i === current) return;
+    current = i;
+    Array.prototype.forEach.call(plantsEl.children, (c, j) => {
+      const on = j === i;
+      c.classList.toggle('active', on);
+      c.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    render(PLANTS[i]);
+  }
+
+  function render(p) {
+    const cx = 50, cy = 44, R = 33;
+    const n = p.visitors.length;
+    const pts = p.visitors.map((v, k) => {
+      const a = (-90 + k * (360 / n)) * Math.PI / 180;
+      return { v: v, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) };
+    });
+    const lines = pts.map((t, k) => {
+      const len = Math.hypot(t.x - cx, t.y - cy).toFixed(2);
+      return '<line x1="' + cx + '" y1="' + cy + '" x2="' + t.x.toFixed(2) +
+        '" y2="' + t.y.toFixed(2) + '" style="--len:' + len + ';--d:' + k + '"/>';
+    }).join('');
+    const toks = pts.map((t, k) => {
+      const dx = cx - t.x, dy = cy - t.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const fx = (dx / len * 24).toFixed(1) + 'px';
+      const fy = (dy / len * 24).toFixed(1) + 'px';
+      return '<div class="pl-token" style="left:' + t.x.toFixed(2) + '%;top:' + t.y.toFixed(2) + '%">' +
+        '<div class="pl-token-inner" style="--fx:' + fx + ';--fy:' + fy + ';--i:' + k + '">' +
+        '<span class="pl-node">' + (G[t.v[0]] || G.bee) + '</span>' +
+        '<span class="pl-token-label">' + t.v[1] + '</span>' +
+        '</div></div>';
+    }).join('');
+    stageEl.innerHTML =
+      '<div class="pl-scene">' +
+      '<svg class="pl-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' + lines + '</svg>' +
+      '<div class="pl-bloom" style="left:' + cx + '%;top:' + cy + '%"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
+      toks +
+      '</div>' +
+      '<p class="pl-caption"><strong>' + p.name + '</strong> <em>' + p.latin + '</em>' +
+      '<span>' + p.blurb + '</span></p>';
+  }
+
+  // Hold the first render until the lab scrolls into view, so the fly-in is seen.
+  if (reduce || !('IntersectionObserver' in window)) {
+    select(0);
+  } else {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { select(0); obs.disconnect(); }
+      });
+    }, { threshold: 0.25 });
+    io.observe(lab);
+  }
+})();
