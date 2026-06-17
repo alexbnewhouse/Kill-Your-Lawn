@@ -45,51 +45,8 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// ---- Wildlife Log Data ----
-// Update this array to add new sightings. Types: insect, bird, mammal, plant
-const wildlifeLog = [
-  {
-    date: 'March 2026',
-    type: 'insect',
-    name: 'Mining bee (Andrena sp.)',
-    notes: 'First bee of the season — a small brown female foraging in the bare mulch, likely nesting nearby. These ground-nesters love undisturbed soil.'
-  },
-  {
-    date: 'March 2026',
-    type: 'bird',
-    name: 'American robin',
-    notes: 'Pair investigating the sheet-mulched area. Robins hunt earthworms that move into the cardboard layer as it decomposes — already doing the work for us.'
-  },
-  {
-    date: 'March 2026',
-    type: 'bird',
-    name: 'House finch',
-    notes: 'Singing from the neighbor\'s spruce. Once the coneflowers go in, these will be regulars — they love the seeds.'
-  }
-];
-
-function renderWildlifeLog() {
-  const container = document.getElementById('wildlife-entries');
-  if (!container) return;
-
-  if (wildlifeLog.length === 0) {
-    container.innerHTML = '<p class="wildlife-empty">No entries yet — the yard is still bare. Check back as the season progresses.</p>';
-    return;
-  }
-
-  container.innerHTML = wildlifeLog.map(entry => `
-    <div class="wildlife-entry">
-      <span class="wildlife-date">${entry.date}</span>
-      <span class="wildlife-type type-${entry.type}">${entry.type}</span>
-      <span>
-        <span class="wildlife-name">${entry.name}</span>
-        <span class="wildlife-notes">${entry.notes}</span>
-      </span>
-    </div>
-  `).join('');
-}
-
-renderWildlifeLog();
+// ---- Wildlife log removed for now (the #yard "our yard, in progress" section
+//      was pulled from index.html; restore from git history to bring it back) ----
 
 // ---- Scroll-triggered animations ----
 // Each entry: selector for the container, and a function applying its final state.
@@ -276,18 +233,33 @@ function shareLink(method) {
 
   // Real Front Range plant → pollinator relationships
   const PLANTS = [
-    { name: 'Wild bergamot', latin: 'Monarda fistulosa', img: 'images/plants/wild_bergamot.jpg',
-      blurb: 'Tubular lavender heads built for long tongues — bumble bees work them by day, hawkmoths at dusk.',
-      visitors: [['bee', 'Bumble bee'], ['moth', 'Hummingbird moth'], ['bee', 'Leafcutter bee'], ['hummingbird', 'Hummingbird']] },
+    { name: 'Prairie smoke', latin: 'Geum triflorum', img: 'images/plants/prairie_smoke.jpg',
+      blurb: 'One of the first to wake up. Bumble bee queens grip the nodding pink bells and buzz the pollen loose — almost nothing else can.',
+      visitors: [['bee', 'Bumble bee queen'], ['bee', 'Mason bee']] },
+    { name: 'Rocky Mountain columbine', latin: 'Aquilegia coerulea', img: 'images/plants/rocky_mountain_columbine.jpg',
+      blurb: "Colorado's state flower. Those long nectar spurs are a lock only long-tongued hawkmoths, bumble bees, and hummingbirds can pick.",
+      visitors: [['moth', 'Hawk moth'], ['bee', 'Bumble bee'], ['hummingbird', 'Broad-tailed hummingbird']] },
     { name: 'Rocky Mtn penstemon', latin: 'Penstemon strictus', img: 'images/plants/rocky_mountain_penstemon.jpg',
       blurb: 'Violet-blue tubes sized for queen bumble bees — and raided by hummingbirds on the wing.',
       visitors: [['bee', 'Bumble bee'], ['bee', 'Mason bee'], ['bee', 'Digger bee'], ['hummingbird', 'Broad-tailed hummingbird']] },
+    { name: 'Wild bergamot', latin: 'Monarda fistulosa', img: 'images/plants/wild_bergamot.jpg',
+      blurb: 'Tubular lavender heads built for long tongues — bumble bees work them by day, hawkmoths at dusk.',
+      visitors: [['bee', 'Bumble bee'], ['moth', 'Hummingbird moth'], ['bee', 'Leafcutter bee'], ['hummingbird', 'Hummingbird']] },
     { name: 'Purple prairie clover', latin: 'Dalea purpurea', img: 'images/plants/purple_prairie_clover.jpg',
       blurb: 'A nitrogen-fixing pollen powerhouse, and one of the best small-bee plants on the Front Range.',
       visitors: [['bee', 'Leafcutter bee'], ['bee', 'Green sweat bee'], ['butterfly', 'Sulphur butterfly'], ['bee', 'Digger bee']] },
+    { name: 'Scarlet globemallow', latin: 'Sphaeralcea coccinea', img: 'images/plants/scarlet_globemallow.jpg',
+      blurb: 'Drought-hardened orange cups with a devoted specialist — the globemallow bee gathers pollen from little else.',
+      visitors: [['bee', 'Globemallow bee'], ['bee', 'Sweat bee'], ['butterfly', 'Painted lady']] },
+    { name: 'Prairie coneflower', latin: 'Ratibida columnifera', img: 'images/plants/prairie_coneflower.jpg',
+      blurb: 'Sombrero cones that bloom for months for native bees, then hold seed heads goldfinches pick clean into winter.',
+      visitors: [['bee', 'Sweat bee'], ['bee', 'Sunflower bee'], ['butterfly', 'Painted lady'], ['bird', 'American goldfinch']] },
     { name: 'Blanket flower', latin: 'Gaillardia aristata', img: 'images/plants/blanket_flower.jpg',
       blurb: 'Open, daisy-like landing pads that welcome just about everyone, all summer long.',
       visitors: [['bee', 'Sweat bee'], ['bee', 'Leafcutter bee'], ['butterfly', 'Painted lady'], ['beetle', 'Soldier beetle']] },
+    { name: 'Narrowleaf yucca', latin: 'Yucca glauca', img: 'images/plants/narrowleaf_yucca.jpg',
+      blurb: 'A textbook mutualism: the female yucca moth pollinates the flower on purpose, then lays eggs whose larvae eat a few of the seeds. Neither species survives without the other.',
+      visitors: [['moth', 'Yucca moth']] },
     { name: 'Maximilian sunflower', latin: 'Helianthus maximiliani', img: 'images/plants/maximilian_sunflower.jpg',
       blurb: 'Late gold that feeds specialist sunflower bees — then feeds goldfinches its seed.',
       visitors: [['bee', 'Sunflower bee'], ['bee', 'Sweat bee'], ['bird', 'American goldfinch'], ['butterfly', 'Painted lady']] },
