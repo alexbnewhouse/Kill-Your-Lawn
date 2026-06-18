@@ -359,6 +359,94 @@ h4 { font-size: 1rem; color: var(--olive); margin-bottom: 0.4rem; font-weight: 6
 }
 
 /* =====================================================
+   30-SECOND SUMMARY (fast on-ramp under the hero)
+   ===================================================== */
+#tldr { background: var(--cream); }
+.tldr-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 72px 28px 80px;
+}
+.tldr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.4rem;
+  counter-reset: tldrnum;
+}
+.tldr-item {
+  position: relative;
+  border-top: 1.5px solid var(--text);
+  padding: 1.2rem 1.3rem 0.4rem 0;
+}
+.tldr-item::before {
+  counter-increment: tldrnum;
+  content: counter(tldrnum, decimal-leading-zero);
+  position: absolute;
+  top: 0.9rem;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--tan);
+  letter-spacing: 0.05em;
+}
+.tldr-item h3 {
+  font-size: 1.45rem;
+  margin-bottom: 0.45rem;
+  color: var(--olive);
+}
+.tldr-item p {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.tldr-item strong { color: var(--text); font-weight: 600; }
+.tldr-foot {
+  margin-top: 2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text);
+  max-width: var(--measure);
+}
+.tldr-foot a {
+  font-style: normal;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--gold);
+  border-bottom: 1.5px solid currentColor;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   SECTION TAKEAWAY (skim-line / standfirst per section)
+   ===================================================== */
+.section-takeaway {
+  font-family: var(--font-serif);
+  font-variation-settings: var(--frau-soft);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--text);
+  max-width: var(--measure);
+  margin: 0 0 1.5rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--gold);
+}
+/* Dark/ink sections: lift the copy to paper white; the border picks up the
+   light prairie-green accent automatically via the --gold flip above */
+#systems .section-takeaway,
+#economics .section-takeaway,
+#native-lawn .section-takeaway,
+#bees .section-takeaway { color: var(--off-white); }
+
+@media (max-width: 760px) {
+  .tldr-grid { grid-template-columns: 1fr; }
+  .tldr-inner { padding: 56px 22px 60px; }
+  .section-takeaway { font-size: 1.2rem; }
+}
+
+/* =====================================================
    WHY SECTION
    ===================================================== */
 #why { background: var(--off-white); }
